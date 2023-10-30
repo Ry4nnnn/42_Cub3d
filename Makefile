@@ -1,13 +1,25 @@
 
 NAME		= cub3d
 
-LIB			:= -Llibft -lft
+LIBFLAGS	:= -Llibft -lft
 
-INCLUDE		:= -I./includes -Ilibft/src -Imlx
+INCLUDES		:= ./includes
 
-CFLAGS		:= $(INCLUDE) -fcommon -Wall -Wextra -Werror
+MLXFLAG 	:= -I/usr/include -Imlx_linux 
 
-LINKS	= -framework OpenGL -framework Appkit
+CFLAGS		:= -fcommon -DNO_SHARED_MEMORY=1 #-Wall -Wextra -Werror
+
+# LINKS		= -framework OpenGL -framework Appkit
+
+UNAME := $(shell uname)
+
+ifeq ($(UNAME), Linux)
+	MLXFLAGS2	= -Lmlx_linux -lmlx_Linux -L/usr/lib -I/usr/include -Imlx_linux -lXext -lX11 -lm -lz
+endif
+ifeq ($(UNAME), Darwin)
+	MLXFLAGS2	= -lmlx -framework OpenGL -framework AppKit -Imlx
+endif
+
 
 ifeq ($(DB), 1)
 	CFLAGS	+= -fsanitize=address -g3
@@ -37,9 +49,9 @@ RESET		= \033[0m
 
 #------------------------PATH--------------------------#
 
-SRCS_PATH		:= src
+SRCS_PATH		:= ./src
 
-OBJS_PATH		:= obj
+OBJS_PATH		:= ./obj
 
 LIBFT_PATH		:= libft
 
@@ -54,23 +66,23 @@ SRCS		+= $(addsuffix .c, $(addprefix $(SRCS_PATH)/, $(MAIN)))
 
 OBJS		+= $(addsuffix .o, $(addprefix $(OBJS_PATH)/, $(MAIN)))
 
+
 #------------------------------------------------------#
 
-vpath %.c $(SRCS_PATH)/
+# vpath %.c $(SRCS_PATH)/
 
-$(OBJS_PATH)/%.o: %.c
-	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
-	@printf "$(NEWLINE)$(CYAN)Creating object file $@ from $<"
+all: $(NAME)
 
-all:
-	@mkdir -p $(OBJS_PATH)
-	@make ${NAME}
-
-${NAME} : ${OBJS}
+$(NAME) : $(OBJS)
 	@printf "$(NEWLINE)$(RESET)\n"
 	@make -C $(LIBFT_PATH)
-	@${CC} ${CFLAGS} $^ -Lmlx -lmlx ${INCLUDE} ${LIB} ${LINKS} -o $@
-	@echo "$(GREEN)$(NAME) was created$(RESET)"
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFLAGS) $(MLXFLAGS2) -I $(INCLUDES) -o $(NAME)
+	@echo "$(GREEN) $(NAME) was created$(RESET)"
+
+$(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c
+	@mkdir -p $(OBJS_PATH)
+	@$(CC) $(CFLAGS) $(MLXFLAG) -I $(INCLUDES) -c $< -o $@
+	@printf "$(NEWLINE)$(CYAN)Creating object file $@ from $<"
 
 clean :
 	@make fclean -C $(LIBFT_PATH)
@@ -78,7 +90,7 @@ clean :
 	@echo "$(BLUE)$(NAME): $(CYAN)object files are cleaned$(RESET)"
 
 fclean : clean
-	@rm -rf ${NAME}
+	@rm -rf $(NAME)
 	@echo "$(BLUE)$(NAME): $(H_RED) $(NAME) was deleted $(RESET)"
 
 re : fclean all
