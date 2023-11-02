@@ -3,11 +3,11 @@ NAME		= cub3d
 
 LIBFLAGS	:= -Llibft -lft
 
-INCLUDES		:= ./includes
+INCLUDES	:= ./includes
 
 MLXFLAG 	:= -I/usr/include -Imlx_linux 
 
-CFLAGS		:= -fcommon -DNO_SHARED_MEMORY=1 #-Wall -Wextra -Werror
+CFLAGS		:= -fcommon -DNO_SHARED_MEMORY=1 -Wall -Wextra -Werror
 
 # LINKS		= -framework OpenGL -framework Appkit
 
@@ -57,7 +57,7 @@ LIBFT_PATH		:= libft
 
 #------------------------FILES-------------------------#
 
-MAIN		= main
+MAIN		= main parsing mlx_utlis map_check utlis init
 
 #------------------------------------------------------#
 
@@ -76,8 +76,12 @@ all: $(NAME)
 $(NAME) : $(OBJS)
 	@printf "$(NEWLINE)$(RESET)\n"
 	@make -C $(LIBFT_PATH)
+	@make bonus -C $(LIBFT_PATH)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFLAGS) $(MLXFLAGS2) -I $(INCLUDES) -o $(NAME)
 	@echo "$(GREEN) $(NAME) was created$(RESET)"
+
+$(LIBFT) :
+	@make -C $(LIBFT_PATH)
 
 $(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c
 	@mkdir -p $(OBJS_PATH)
