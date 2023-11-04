@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-static void	prinitf_map_info(t_cub3d *data)
+void	printf_map_info(t_cub3d *data)
 {
 	t_list	*tmp;
 
@@ -29,9 +29,6 @@ int	init_map(t_cub3d *data, char **file, int i, int j)
 		j++;
 		i++;
 	}
-	j = -1;
-	while (map[++j] != NULL)
-		printf("|%s|\n", map[j]);
 	data->map = map;
 	return (0);
 }
@@ -46,7 +43,6 @@ int	init_map_data(t_cub3d *data, char **file)
 
 	j = -1;
 	while (file[++j] != NULL);
-	printf("j = %d\n", j);
 	if (j < 9)
 	{
 		ft_putstr_fd("map too little information\n", 2);
@@ -64,7 +60,6 @@ int	init_map_data(t_cub3d *data, char **file)
 		free_2d(split);
 		i++;
 	}
-	prinitf_map_info(data);
 	if (init_map(data, file, i, j) == 1)
 		return (1);
 	return (0);

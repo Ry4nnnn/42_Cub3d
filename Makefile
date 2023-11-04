@@ -57,7 +57,7 @@ LIBFT_PATH		:= libft
 
 #------------------------FILES-------------------------#
 
-MAIN		= main parsing mlx_utlis map_check utlis init
+MAIN		= main parsing mlx_utlis map_check utlis init colour key_hook
 
 #------------------------------------------------------#
 

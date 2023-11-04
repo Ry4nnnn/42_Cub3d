@@ -12,6 +12,18 @@
 # include <math.h>
 # include <limits.h>
 
+# define SIZE_X 1900
+# define SIZE_Y 1000
+
+typedef struct s_image
+{
+	int	start_x;
+	int	start_y;
+	int	dest_x;
+	int	dest_y;
+	int	colour;
+}	t_image;
+
 typedef struct s_map_info
 {
 	char	key;
@@ -55,5 +67,14 @@ void    init_data(t_cub3d *data);
 
 /* MAP_CHECK */
 int		map_check(t_cub3d *data, char **file);
+
+/* COLOUR */
+void    change_colour(t_cub3d *data, t_image *img);
+void    half_window(t_cub3d *data, int colour1, int colour2);
+void	drawPlayer(t_cub3d  *data);
+void    drawMap(t_cub3d	*data);
+
+/* KEY_HOOK */
+int		key_hook(int keycode, t_cub3d *data);
 
 #endif
