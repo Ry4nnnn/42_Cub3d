@@ -50,6 +50,8 @@ int	parsing(t_cub3d *data, char *filename)
 {
 	char	**array;
 
+	if (check_valid_filename(filename) == 1)
+		return(1);
 	array = NULL;
 	array  = open_file(filename);
 	if (array == NULL)

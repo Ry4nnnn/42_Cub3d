@@ -12,11 +12,24 @@
 # include <math.h>
 # include <limits.h>
 
-typedef struct s_map_info
+// typedef struct s_map_info
+// {
+// 	char	key;
+// 	char	*value;
+// }	t_map_info;
+
+typedef struct s_texture
 {
-	char	key;
-	char	*value;
-}	t_map_info;
+	void	*north;
+	void	*south;
+	void	*west;
+	void	*east;
+	void	*door;
+	int		floor[3];
+	int		ceiling[3];
+	int		width;
+	int		height;
+}	t_texture;
 
 typedef struct s_img_data
 {
@@ -33,9 +46,9 @@ typedef struct s_cub3d
 	void		*mlx;
 	t_img_data	*img;
 	char		**map;
-	t_list		*map_info;
-	float		px;
-	float 		py;
+	// t_list		*map_info;
+	t_texture		texture;
+	
 }	t_cub3d;
 
 
