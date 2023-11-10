@@ -12,8 +12,9 @@
 # include <math.h>
 # include <limits.h>
 
-# define SIZE_X 1900
-# define SIZE_Y 1000
+# define SIZE_X 500
+# define SIZE_Y 500
+# define PI 3.1415926535
 
 typedef struct s_image
 {
@@ -39,6 +40,21 @@ typedef struct s_img_data
 	int		endian;
 }	t_img_data;
 
+typedef	struct	s_player
+{
+	double	px;
+	double	py;
+	double	pdx;
+	double	pdy;
+	double	pa;
+	double	dirx;
+	double	diry;
+	double	planex;
+	double	planey;
+	double	t;
+	double	old_t;
+}	t_player;
+
 typedef struct s_cub3d
 {
 	void		*win;
@@ -46,8 +62,7 @@ typedef struct s_cub3d
 	t_img_data	*img;
 	char		**map;
 	t_list		*map_info;
-	float		px;
-	float 		py;
+	t_player	*player;
 }	t_cub3d;
 
 
@@ -61,6 +76,9 @@ void	my_mlx_pixel_put(t_cub3d *data, int x, int y, int color);
 
 /* UTLIS*/
 void    free_2d(char **array);
+void    ft_swap(int *a, int *b);
+int		degree_to_radian(float degree);
+int 	ft_abs(int a);
 
 /* INIT */
 void    init_data(t_cub3d *data);

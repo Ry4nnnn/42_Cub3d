@@ -17,8 +17,7 @@ int	error_check(t_cub3d *data, int argc, char **argv)
 int	loop_hook(t_cub3d *data)
 {
 	half_window(data, 0x0020487E, 0x0020487E);
-	drawMap(data);
-	// printf("px: %f, py: %f\n", data->px, data->py);
+	// drawMap(data);
 	drawPlayer(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	return (0);
