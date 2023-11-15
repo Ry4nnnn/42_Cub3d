@@ -69,4 +69,6 @@ void    init_data(t_cub3d *data);
 /* MAP_CHECK */
 int		map_check(t_cub3d *data, char **file);
 
+void    ft_error(t_cub3d *data, char *msg);
+
 #endif
