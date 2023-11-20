@@ -1,18 +1,5 @@
 #include "cub3d.h"
 
-void	printf_map_info(t_cub3d *data)
-{
-	t_list	*tmp;
-
-	tmp = data->map_info;
-	while (tmp != NULL)
-	{
-		printf("[%c] ", ((t_map_info *)tmp->content)->key);
-		printf("[%s]\n", ((t_map_info *)tmp->content)->value);
-		tmp = tmp->next;
-	}
-}
-
 int	init_map(t_cub3d *data, char **file, int i, int j)
 {
 	char **map;
@@ -30,6 +17,18 @@ int	init_map(t_cub3d *data, char **file, int i, int j)
 		i++;
 	}
 	data->map = map;
+	data->map_height = j;
+	data->map_width = ft_strlen(map[0]);
+	j = -1;
+	while (data->map[++j])
+	{
+		i = -1;
+		printf("|");
+		while (data->map[j][++i])
+			printf("%c", data->map[j][i]);
+		printf("|");
+		printf("\n");
+	}
 	return (0);
 }
 

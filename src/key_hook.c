@@ -25,53 +25,58 @@ int	key_hook(int keycode, t_cub3d *data)
 {
 	double	old_dirx;
 	double	old_planex;
+	double	angle;
 
-	printf("keycode: %d\n", keycode);
+	angle = 10/180.0 * PI;
 	if (keycode == 65307)
 		exit_hook(data);
 	if (keycode == 'w')
 	{
-		printf("before w px: %f, py: %f\n", data->player->px, data->player->py);
-		// if (data->map[(int)(data->player->px + data->player->dirx * 0.1)][(int)data->player->py] != '1')
-		data->player->px += data->player->dirx * 10;
-		// if (data->map[(int)(data->player->px)][(int)(data->player->py + data->player->diry * 0.1)] == '1')
-		data->player->py += data->player->diry * 10;
-		printf("after w px: %f, py: %f\n", data->player->px, data->player->py);
+		if (data->map[(int)data->player->py][(int)(data->player->px + data->player->dirx * 0.1)] != '1')
+			data->player->px += data->player->dirx * 0.1;
+		if (data->map[(int)(data->player->py + data->player->diry * 0.1)][(int)(data->player->px)] != '1')
+			data->player->py += data->player->diry * 0.1;
 	}
 	if (keycode == 's')
 	{
-		// if (data->map[(int)(data->player->px + data->player->dirx * 0.1)][(int)data->player->py] != '1')
-			data->player->px -= data->player->dirx * 10;
-		// if (data->map[(int)(data->player->px)][(int)(data->player->py + data->player->diry * 0.1)] == '1')
-			data->player->py -= data->player->diry * 10;
+		if (data->map[(int)data->player->py][(int)(data->player->px - data->player->dirx * 0.1)] != '1')
+			data->player->px -= data->player->dirx * 0.1;
+		if (data->map[(int)(data->player->py - data->player->diry * 0.1)][(int)(data->player->px)] != '1')
+			data->player->py -= data->player->diry * 0.1;
 	}	
 	if (keycode == 'a')
 	{
-		data->player->px += data->player->planex * 10;
-		data->player->py += data->player->planey * 10;
+		if (data->map[(int)data->player->py][(int)(data->player->px + data->player->planex * 0.1)] != '1')
+			data->player->px += data->player->planex * 0.1;
+		if (data->map[(int)(data->player->py + data->player->planey * 0.1)][(int)(data->player->px)] != '1')
+			data->player->py += data->player->planey * 0.1;
 	}
 	if (keycode == 'd')
 	{
-		data->player->px -= data->player->planex * 10;
-		data->player->py -= data->player->planey * 10;
+		if (data->map[(int)data->player->py][(int)(data->player->px - data->player->planex * 0.1)] != '1')
+			data->player->px -= data->player->planex * 0.1;
+		if (data->map[(int)(data->player->py - data->player->planey * 0.1)][(int)(data->player->px)] != '1')
+			data->player->py -= data->player->planey * 0.1;
 	}
 	if (keycode == 65363)
 	{
 		old_dirx = data->player->dirx;
-		data->player->dirx = data->player->dirx * cos(0.2) - data->player->diry * sin(0.2);
-		data->player->diry = old_dirx * sin(0.2) + data->player->diry * cos(0.2);
+		data->player->dirx = data->player->dirx * cos(angle) - data->player->diry * sin(angle);
+		data->player->diry = old_dirx * sin(angle) + data->player->diry * cos(angle);
 		old_planex = data->player->planex;
-		data->player->planex = data->player->planex * cos(0.2) - data->player->planey * sin(0.2);
-		data->player->planey = old_planex * sin(0.2) + data->player->planey * cos(0.2);
+		data->player->planex = data->player->planex * cos(angle) - data->player->planey * sin(angle);
+		data->player->planey = old_planex * sin(angle) + data->player->planey * cos(angle);
+		data->player->pa -= 10;
 	}
 	if (keycode == 65361)
 	{
 		old_dirx = data->player->dirx;
-		data->player->dirx = data->player->dirx * cos(-0.2) - data->player->diry * sin(-0.2);
-		data->player->diry = old_dirx * sin(-0.2) + data->player->diry * cos(-0.2);
+		data->player->dirx = data->player->dirx * cos(-angle) - data->player->diry * sin(-angle);
+		data->player->diry = old_dirx * sin(-angle) + data->player->diry * cos(-angle);
 		old_planex = data->player->planex;
-		data->player->planex = data->player->planex * cos(-0.2) - data->player->planey * sin(-0.2);
-		data->player->planey = old_planex * sin(-0.2) + data->player->planey * cos(-0.2);
+		data->player->planex = data->player->planex * cos(-angle) - data->player->planey * sin(-angle);
+		data->player->planey = old_planex * sin(-angle) + data->player->planey * cos(-angle);
+		data->player->pa += 10;
 	}
 	return (0);
 }
