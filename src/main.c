@@ -20,7 +20,7 @@ int	loop_hook(t_cub3d *data)
 	drawMap(data);
 	drawPlayer(data);
 	drawRay(data);
-	drawWall(data);
+	// drawWall(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	return (0);
 }

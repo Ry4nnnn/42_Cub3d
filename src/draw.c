@@ -215,10 +215,14 @@ void	init_ray(t_cub3d *data, t_ray *ray, int x, int w)
 	scale = 2 * x / (double)w - 1;
 	ray->raydirx = data->player->dirx + data->player->planex * scale;
 	ray->raydiry = data->player->diry + data->player->planey * scale;
+	// printf("playerdirx %f, playerdiry %f\n", data->player->dirx, data->player->diry);
+	// printf("playerplanex %f, playerplaney %f\n", data->player->planex, data->player->planey);
+	// printf("raydirx: %f, raydiry: %f\n", ray->raydirx, ray->raydiry);
 	ray->mx = (int)data->player->px;
 	ray->my = (int)data->player->py;
-	ray->dx = (ray->raydirx == 0) ? 1e30 : ft_abs(1 / ray->raydirx);
-	ray->dy = (ray->raydiry == 0) ? 1e30 : ft_abs(1 / ray->raydiry);
+	ray->dx = sqrt(1 + (ray->raydiry * ray->raydiry) / (ray->raydirx * ray->raydirx));
+	ray->dy = sqrt(1 + (ray->raydirx * ray->raydirx) / (ray->raydiry * ray->raydiry));
+	printf("dx: %f, dy: %f\n", ray->dx, ray->dy);
 	ray->stepx = ray->raydirx < 0 ? -1 : 1;
 	ray->xo = ray->raydirx < 0 ? data->player->px - ray->mx : ray->mx + 1.0 - data->player->px;
 	ray->stepy = ray->raydiry < 0 ? -1 : 1;
@@ -227,49 +231,66 @@ void	init_ray(t_cub3d *data, t_ray *ray, int x, int w)
 
 void	drawRay(t_cub3d *data)
 {
-	int		hit;
-	int		side;
+	t_ray	*ray;
 	int		i;
 	int		w;
+	int		colour;
 
 	i = -1;
-	w = 600;
+	w = 1000;
+	ray = data->player->ray;
 	while (++i < w)
 	{
-		init_ray(data, data->player->ray, i, w);
-		hit = 0;
-		while (hit == 0)
+		init_ray(data, ray, i, w);
+		ray->hit = 0;
+		while (ray->hit == 0)
 		{
-			if (data->player->ray->xo < data->player->ray->yo)
+			if (ray->xo < ray->yo)
 			{
-				data->player->ray->xo += data->player->ray->dx;
-				data->player->ray->mx += data->player->ray->stepx;
-				side = 0;
+				ray->xo += ray->dx;
+				ray->mx += ray->stepx;
+				ray->side = 0;
 			}
 			else
 			{
-				data->player->ray->yo += data->player->ray->dy;
-				data->player->ray->my += data->player->ray->stepy;
-				side = 1;
+				ray->yo += ray->dy;
+				ray->my += ray->stepy;
+				ray->side = 1;
 			}
-			if (is_wall(data, data->player->ray->mx, data->player->ray->my) == 0)
-				hit = 1;
+			if (is_wall(data, ray->mx, ray->my) == 0)
+				ray->hit = 1;
 		}
-		if (side == 0)
-			data->player->ray->perpwalldist = data->player->ray->xo - data->player->ray->dx;
+		// printf("stepx: %i, stepy: %i\n", ray->stepx, ray->stepy);
+		if (ray->side == 0)
+			ray->perpwalldist = ray->xo - ray->dx;
 		else
-			data->player->ray->perpwalldist = data->player->ray->yo - data->player->ray->dy;
-		data->player->ray->lineheight = (int)(SIZE_Y / data->player->ray->perpwalldist);
-		data->player->ray->drawstart = -data->player->ray->lineheight / 2 + SIZE_Y / 2;
-		if (data->player->ray->drawstart < 0)
-			data->player->ray->drawstart = 0;
-		data->player->ray->drawend = data->player->ray->lineheight / 2 + SIZE_Y / 2;
-		if (data->player->ray->drawend >= SIZE_Y)
-			data->player->ray->drawend = SIZE_Y - 1;
+			ray->perpwalldist = ray->yo - ray->dy;
+		ray->lineheight = (int)(SIZE_Y / ray->perpwalldist);
+		ray->drawstart = -ray->lineheight / 2 + SIZE_Y / 2;
+		if (ray->drawstart < 0)
+			ray->drawstart = 0;
+		ray->drawend = ray->lineheight / 2 + SIZE_Y / 2;
+		if (ray->drawend >= SIZE_Y)
+			ray->drawend = SIZE_Y - 1;
+		printf("drawstart: %i, drawend: %i\n", ray->drawstart, ray->drawend);
+		if (ray->side == 0)
+			colour = RED;
+		else
+			colour = BLUE;
+		drawLine(data, i, (int)(ray->drawstart), i,(int)( ray->drawend), colour);
 	}
+	// free(ray);
 }
 
-void	drawWall(t_cub3d *data)
-{
-	
-}
+// void	drawWall(t_cub3d *data)
+// {
+// 	t_ray	*ray;
+// 	int		colour;
+
+// 	ray = data->player->ray;
+// 	if (ray->side == 0)
+// 		colour = RED;
+// 	else
+// 		colour = BLUE;
+// 	drawLine(data, 0, ray->drawstart, SIZE_X, ray->drawstart, colour);
+// }

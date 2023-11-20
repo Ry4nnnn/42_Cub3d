@@ -12,9 +12,11 @@
 # include <math.h>
 # include <limits.h>
 
-# define SIZE_X 900
-# define SIZE_Y 900
+# define SIZE_X 1000
+# define SIZE_Y 1000
 # define PI 3.1415926535
+# define RED 0x00FF0000
+# define BLUE 0x004848F5
 
 typedef struct s_image
 {
@@ -56,6 +58,8 @@ typedef	struct s_ray
 	int		lineheight;
 	int		drawstart;
 	int		drawend;
+	int		hit;
+	int		side;
 }	t_ray;
 
 typedef	struct	s_player

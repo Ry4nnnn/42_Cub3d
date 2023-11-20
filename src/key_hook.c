@@ -26,37 +26,39 @@ int	key_hook(int keycode, t_cub3d *data)
 	double	old_dirx;
 	double	old_planex;
 	double	angle;
+	double	move_speed;
 
 	angle = 10/180.0 * PI;
+	move_speed = 0.2;
 	if (keycode == 65307)
 		exit_hook(data);
 	if (keycode == 'w')
 	{
-		if (data->map[(int)data->player->py][(int)(data->player->px + data->player->dirx * 0.1)] != '1')
-			data->player->px += data->player->dirx * 0.1;
-		if (data->map[(int)(data->player->py + data->player->diry * 0.1)][(int)(data->player->px)] != '1')
-			data->player->py += data->player->diry * 0.1;
+		if (is_wall(data, (int)(data->player->px + data->player->dirx * move_speed), (int)data->player->py) == 1)
+			data->player->px += data->player->dirx * move_speed;
+		if (is_wall(data, (int)data->player->px, (int)(data->player->py + data->player->diry * move_speed)) == 1)
+			data->player->py += data->player->diry * move_speed;
 	}
 	if (keycode == 's')
 	{
-		if (data->map[(int)data->player->py][(int)(data->player->px - data->player->dirx * 0.1)] != '1')
-			data->player->px -= data->player->dirx * 0.1;
-		if (data->map[(int)(data->player->py - data->player->diry * 0.1)][(int)(data->player->px)] != '1')
-			data->player->py -= data->player->diry * 0.1;
+		if (is_wall(data, (int)(data->player->px - data->player->dirx * move_speed), (int)data->player->py) == 1)
+			data->player->px -= data->player->dirx * move_speed;
+		if (is_wall(data, (int)data->player->px, (int)(data->player->py - data->player->diry * move_speed)) == 1)
+			data->player->py -= data->player->diry * move_speed;
 	}	
 	if (keycode == 'a')
 	{
-		if (data->map[(int)data->player->py][(int)(data->player->px + data->player->planex * 0.1)] != '1')
-			data->player->px += data->player->planex * 0.1;
-		if (data->map[(int)(data->player->py + data->player->planey * 0.1)][(int)(data->player->px)] != '1')
-			data->player->py += data->player->planey * 0.1;
+		if (is_wall(data, (int)(data->player->px + data->player->planex * move_speed), (int)data->player->py) == 1)
+			data->player->px += data->player->planex * move_speed;
+		if (is_wall(data, (int)data->player->px, (int)(data->player->py + data->player->planey * move_speed)) == 1)
+			data->player->py += data->player->planey * move_speed;
 	}
 	if (keycode == 'd')
 	{
-		if (data->map[(int)data->player->py][(int)(data->player->px - data->player->planex * 0.1)] != '1')
-			data->player->px -= data->player->planex * 0.1;
-		if (data->map[(int)(data->player->py - data->player->planey * 0.1)][(int)(data->player->px)] != '1')
-			data->player->py -= data->player->planey * 0.1;
+		if (is_wall(data, (int)(data->player->px - data->player->planex * move_speed), (int)data->player->py) == 1)
+			data->player->px -= data->player->planex * move_speed;
+		if (is_wall(data, (int)data->player->px, (int)(data->player->py - data->player->planey * move_speed)) == 1)
+			data->player->py -= data->player->planey * move_speed;
 	}
 	if (keycode == 65363)
 	{
