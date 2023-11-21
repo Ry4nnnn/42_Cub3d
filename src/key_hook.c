@@ -81,7 +81,3 @@ int	key_hook(int keycode, t_cub3d *data)
 	}
 	return (0);
 }
-
-
-// w , s, a, d is for moving
-// left, right is for rotation
