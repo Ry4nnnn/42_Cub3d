@@ -9,13 +9,15 @@ void	free_content(void *content)
 	free(tmp);
 }
 
-void	exit_hook(t_cub3d *data)
+int	exit_hook(t_cub3d *data)
 {
 	ft_lstclear(&data->map_info, free_content);
 	mlx_destroy_image(data->mlx, data->img->img);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	free(data->img);
+	free(data->player->ray);
+	free(data->player);
 	free_2d(data->map);
 	free(data);
 	exit(0);

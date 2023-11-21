@@ -42,6 +42,7 @@ int main(int argc, char	**argv)
                                 &data->img->line_length, &data->img->endian);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	mlx_hook(data->win, 2, 1L << 0, key_hook, data);
+	mlx_hook(data->win, 17, 1L << 17, exit_hook, data);
 	mlx_loop_hook(data->mlx, loop_hook, data);
 	mlx_loop(data->mlx);
 	return (0);

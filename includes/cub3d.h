@@ -82,6 +82,7 @@ typedef	struct	s_player
 	t_ray	*ray;
 	double	t;
 	double	old_t;
+	int		news;
 }	t_player;
 
 typedef struct s_cub3d
@@ -133,5 +134,7 @@ int		is_wall(t_cub3d *data, int x, int y);
 
 /* KEY_HOOK */
 int		key_hook(int keycode, t_cub3d *data);
+int		exit_hook(t_cub3d *data);
+void	free_content(void *content);
 
 #endif

@@ -17,7 +17,7 @@ void    drawPlayer(t_cub3d	*data)
 			my_mlx_pixel_put(data, i, j, 0x00B9C781);
 	}
 	i = -1;
-	while (++i < 50)
+	while (++i < 20)
 	{
 		dx = i * (data->player->dirx);
 		dy = i * (data->player->diry);
@@ -50,7 +50,6 @@ void    drawMap(t_cub3d	*data)
 
 int	is_wall(t_cub3d *data, int x, int y)
 {
-	// printf("map width: %i, map height: %i\n", data->map_width, data->map_height *);
 	if (x < 0 || y < 0 || x >= data->map_width|| y >= data->map_height)
 		return (1);
 	if (data->map[y][x] == '1')
@@ -88,7 +87,6 @@ void	drawRay(t_cub3d *data)
 
 	i = -1;
 	w = SIZE_X;
-	ray = ft_calloc(1, sizeof(t_ray));
 	ray = data->player->ray;
 	while (++i < w)
 	{
@@ -135,5 +133,4 @@ void	drawRay(t_cub3d *data)
 		while (++j <= ray->drawend)
 			my_mlx_pixel_put(data, SIZE_X - i , j, colour);
 	}
-	free(ray);
 }
