@@ -17,6 +17,13 @@
 # define PI 3.1415926535
 # define RED 0x00FF0000
 # define BLUE 0x004848F5
+# define GREEN 0x0043BF77
+# define ORANGE 0x00FF9B00
+
+# define NORTH 0
+# define SOUTH 1
+# define EAST 2
+# define WEST 3
 
 typedef struct s_image
 {
@@ -59,6 +66,8 @@ typedef	struct s_ray
 	int		drawstart;
 	int		drawend;
 	int		hit;
+	int		north_south;
+	int		east_west;
 	int		side;
 }	t_ray;
 
