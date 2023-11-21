@@ -29,7 +29,7 @@ int	key_hook(int keycode, t_cub3d *data)
 	double	move_speed;
 
 	angle = 5/180.0 * PI;
-	move_speed = 0.2;
+	move_speed = 0.1;
 	printf("keycode: %d\n", keycode);
 	if (keycode == 65307)
 		exit_hook(data);
@@ -69,7 +69,6 @@ int	key_hook(int keycode, t_cub3d *data)
 		old_planex = data->player->planex;
 		data->player->planex = data->player->planex * cos(angle) - data->player->planey * sin(angle);
 		data->player->planey = old_planex * sin(angle) + data->player->planey * cos(angle);
-		data->player->pa -= 10;
 	}
 	if (keycode == 65361)
 	{
@@ -79,7 +78,6 @@ int	key_hook(int keycode, t_cub3d *data)
 		old_planex = data->player->planex;
 		data->player->planex = data->player->planex * cos(-angle) - data->player->planey * sin(-angle);
 		data->player->planey = old_planex * sin(-angle) + data->player->planey * cos(-angle);
-		data->player->pa += 10;
 	}
 	return (0);
 }

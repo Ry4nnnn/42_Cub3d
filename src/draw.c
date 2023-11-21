@@ -212,8 +212,8 @@ void	init_ray(t_cub3d *data, t_ray *ray, int x, int w)
 {
 	double	scale;
 
-	ray->east_west = -1;
 	ray->north_south = -1;
+	ray->east_west = -1;
 	scale = 2 * x / (double)w - 1;
 	ray->raydirx = data->player->dirx + data->player->planex * scale;
 	ray->raydiry = data->player->diry + data->player->planey * scale;
@@ -221,30 +221,10 @@ void	init_ray(t_cub3d *data, t_ray *ray, int x, int w)
 	ray->my = (int)data->player->py;
 	ray->dx = sqrt(1 + (ray->raydiry * ray->raydiry) / (ray->raydirx * ray->raydirx));
 	ray->dy = sqrt(1 + (ray->raydirx * ray->raydirx) / (ray->raydiry * ray->raydiry));
-	if (ray->raydirx < 0)
-	{
-		ray->stepx = -1;
-		ray->xo = (data->player->px - ray->mx) * ray->dx;
-		ray->east_west = 3;
-	}
-	else
-	{
-		ray->stepx = 1;
-		ray->xo = (ray->mx + 1.0 - data->player->px) * ray->dx;
-		ray->east_west = 2;
-	}
-	if (ray->raydiry < 0)
-	{
-		ray->stepy = -1;
-		ray->yo = (data->player->py - ray->my) * ray->dy;
-		ray->north_south = 0;
-	}
-	else
-	{
-		ray->stepy = 1;
-		ray->yo = (ray->my + 1.0 - data->player->py) * ray->dy;
-		ray->north_south = 1;
-	}
+	ray->stepx = (ray->raydirx < 0) ? -1 : 1;
+	ray->xo = (ray->raydirx < 0) ? (data->player->px - ray->mx) * ray->dx : (ray->mx + 1.0 - data->player->px) * ray->dx;
+	ray->stepy = (ray->raydiry < 0) ? -1 : 1;
+	ray->yo = (ray->raydiry < 0) ? (data->player->py - ray->my) * ray->dy : (ray->my + 1.0 - data->player->py) * ray->dy;
 }
 
 
@@ -292,20 +272,14 @@ void	drawRay(t_cub3d *data)
 		ray->drawend = ray->lineheight / 2 + SIZE_Y / 2;
 		if (ray->drawend >= SIZE_Y)
 			ray->drawend = SIZE_Y - 1;
+		if (ray->side == 0)
+			ray->east_west = (ray->stepx == 1) ? EAST : WEST;
+		else
+			ray->north_south = (ray->stepy == 1) ? SOUTH : NORTH;
 		if (ray->north_south != -1)
-		{
-			if (ray->north_south == 0)
-				colour = RED;
-			if (ray->north_south == 1)
-				colour = BLUE;
-		}
+			colour = (ray->north_south == NORTH) ? RED : BLUE;
 		if (ray->east_west != -1)
-		{
-			if (ray->east_west == 2)
-				colour = GREEN;
-			if (ray->east_west == 3)
-				colour = ORANGE;
-		}
+			colour = (ray->east_west == EAST) ? GREEN : ORANGE;
 		j = ray->drawstart - 1;
 		while (++j <= ray->drawend)
 			my_mlx_pixel_put(data, i, j, colour);

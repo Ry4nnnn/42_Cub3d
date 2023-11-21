@@ -75,9 +75,6 @@ typedef	struct	s_player
 {
 	double	px;
 	double	py;
-	double	pdx;
-	double	pdy;
-	int		pa;
 	double	dirx;
 	double	diry;
 	double	planex;
