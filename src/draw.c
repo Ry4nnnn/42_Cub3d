@@ -284,6 +284,7 @@ void	drawRay(t_cub3d *data)
 			ray->perpwalldist = ray->xo - ray->dx;
 		else
 			ray->perpwalldist = ray->yo - ray->dy;
+		ray->perpwalldist *= cos(ray->raydirx - data->player->dirx);
 		ray->lineheight = (int)(SIZE_Y / ray->perpwalldist);
 		ray->drawstart = -ray->lineheight / 2 + SIZE_Y / 2;
 		if (ray->drawstart < 0)
