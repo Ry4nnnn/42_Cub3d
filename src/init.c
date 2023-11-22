@@ -10,7 +10,7 @@ void    init_data(t_cub3d *data)
     data->player->dirx = -1;
     data->player->diry =  0;
     data->player->planex = 0;
-    data->player->planey = 0.50;
+    data->player->planey = 0.45;
     data->player->t = 0;
     data->player->old_t = 0;
     data->player->ray = ft_calloc(1, sizeof(t_ray));
