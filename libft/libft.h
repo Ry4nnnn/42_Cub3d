@@ -6,7 +6,7 @@
 /*   By: welim <welim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 16:02:25 by welim             #+#    #+#             */
-/*   Updated: 2022/06/23 22:42:04 by welim            ###   ########.fr       */
+/*   Updated: 2023/11/23 18:00:05 by welim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	*ft_memmove(void *dest, const void	*src, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 
-size_t	ft_strlen(const char *s);
+int	ft_strlen(const char *s);
 size_t	ft_strlcpy(char	*dst, const char *src, size_t dstsize);
 size_t	ft_strlcat(char	*dst, const char *src, size_t size);
 

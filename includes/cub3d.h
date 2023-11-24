@@ -12,20 +12,36 @@
 # include <math.h>
 # include <limits.h>
 
-typedef struct s_map_info
+typedef struct s_texture
 {
-	char	key;
-	char	*value;
-}	t_map_info;
+	t_img_data	*north;
+	t_img_data	*south;
+	t_img_data	*west;
+	t_img_data	*east;
+	t_img_data	*door;
+	int			floor[3];
+	int			ceiling[3];
+	int			width;
+	int			height;
+}	t_texture;
 
 typedef struct s_img_data
 {
 	void	*img;
 	char	*addr;
+	char	*path;
 	int		bpp;
 	int		line_length;
 	int		endian;
 }	t_img_data;
+
+typedef	struct s_player
+{
+	int		spawn_dir;
+	float	pos_x;
+	float	pos_y;
+}	t_player;
+
 
 typedef struct s_cub3d
 {
@@ -33,9 +49,10 @@ typedef struct s_cub3d
 	void		*mlx;
 	t_img_data	*img;
 	char		**map;
-	t_list		*map_info;
-	float		px;
-	float 		py;
+	t_texture	*texture;
+	t_player	*player;
+	int			map_y;
+	int			map_x;
 }	t_cub3d;
 
 
@@ -55,5 +72,7 @@ void    init_data(t_cub3d *data);
 
 /* MAP_CHECK */
 int		map_check(t_cub3d *data, char **file);
+
+void    ft_error(t_cub3d *data, char *msg);
 
 #endif

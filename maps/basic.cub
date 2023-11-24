@@ -1,11 +1,11 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./textures/north.xpm
+SO ./textures/south.xpm
+EA ./textures/brickwall.xpm
+WE ./textures/brickwall.xpm
+DO ./textures/door.xpm
 
-F 220,100,0
+F 220,100,9
 C 225,30,0
-
 
 11111111
 10000001
@@ -16,5 +16,5 @@ C 225,30,0
 10000001
 10000001
 10000001
-10000001
+10111101
 11111111
