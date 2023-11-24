@@ -42,11 +42,14 @@ typedef struct s_map_info
 
 typedef struct s_img_data
 {
+	void	*img_ptr;
 	void	*img;
 	char	*addr;
 	int		bpp;
 	int		line_length;
 	int		endian;
+	int		width;
+	int		height;
 }	t_img_data;
 
 typedef	struct s_ray
@@ -85,11 +88,20 @@ typedef	struct	s_player
 	int		news;
 }	t_player;
 
+typedef	struct s_news
+{
+	t_img_data	*north;
+	t_img_data	*south;
+	t_img_data	*east;
+	t_img_data	*west;
+}	t_news;
+
 typedef struct s_cub3d
 {
 	void		*win;
 	void		*mlx;
 	t_img_data	*img;
+	t_news		*news;
 	char		**map;
 	int			map_width;
 	int			map_height;

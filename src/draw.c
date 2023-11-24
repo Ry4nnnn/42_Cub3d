@@ -112,6 +112,38 @@ int	is_wall(t_cub3d *data, int x, int y)
 	return (1);
 }
 
+unsigned int	get_color(t_cub3d *data, int x, int y)
+{
+	char	*dst;
+
+	if (x < 0 || y < 0 || x >= data->news->north->width || y >= data->news->north->height)
+		return (0);
+	dst = data->news->north->addr + (y * data->news->north->line_length + x * (data->news->north->bpp / 8));
+	return (*(unsigned int*)dst);
+}
+
+unsigned int	texture_pixel_color(t_cub3d *data, t_ray *ray)
+{
+	double	pixel_x;
+	double	pixel_y;
+	int		top;
+	int		result;
+
+	top = (ray->drawend - ray->drawstart) - (ray->lineheight / 2);
+	pixel_x = data->player->px * data->news->north->width;
+	printf("pixel_x %f\n", pixel_x);
+	pixel_y = (data->player->py - top) / ray->lineheight;
+	pixel_y *= data->news->north->height;
+	printf("pixel_y %f\n", pixel_y);
+	result = get_color(data, (int)pixel_x, (int)pixel_y);
+	printf("result %d\n", result);
+	(void)pixel_x;
+	(void)top;
+	(void)pixel_y;
+	(void)result;
+	return (RED);
+}
+
 void	init_ray(t_cub3d *data, t_ray *ray, int x, int w)
 {
 	double	scale;
@@ -184,8 +216,18 @@ void	drawRay(t_cub3d *data)
 			colour = (ray->north_south == NORTH) ? RED : BLUE;
 		if (ray->east_west != -1)
 			colour = (ray->east_west == EAST) ? GREEN : ORANGE;
-		j = ray->drawstart - 1;
-		while (++j <= ray->drawend)
-			my_mlx_pixel_put(data, SIZE_X - i , j, colour);
+		if (ray->north_south == NORTH)
+		{
+			j = ray->drawstart - 1;
+			while (++j <= ray->drawend)
+				my_mlx_pixel_put(data, i, j, (int)texture_pixel_color(data, ray));	
+		}
+		else
+		{
+			j = ray->drawstart - 1;
+			while (++j <= ray->drawend)
+				my_mlx_pixel_put(data, SIZE_X - i , j, colour);
+		}
+			
 	}
 }
