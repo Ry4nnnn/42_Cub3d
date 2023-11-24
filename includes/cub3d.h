@@ -12,6 +12,17 @@
 # include <math.h>
 # include <limits.h>
 
+
+typedef struct s_img_data
+{
+	void	*img;
+	char	*addr;
+	char	*path;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}	t_img_data;
+
 typedef struct s_texture
 {
 	t_img_data	*north;
@@ -24,16 +35,6 @@ typedef struct s_texture
 	int			width;
 	int			height;
 }	t_texture;
-
-typedef struct s_img_data
-{
-	void	*img;
-	char	*addr;
-	char	*path;
-	int		bpp;
-	int		line_length;
-	int		endian;
-}	t_img_data;
 
 typedef	struct s_player
 {
@@ -50,7 +51,7 @@ typedef struct s_cub3d
 	t_img_data	*img;
 	char		**map;
 	t_texture	*texture;
-	t_player	*player;
+	t_player	player;
 	int			map_y;
 	int			map_x;
 }	t_cub3d;
