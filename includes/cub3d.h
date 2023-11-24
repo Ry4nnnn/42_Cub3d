@@ -14,21 +14,22 @@
 
 typedef struct s_texture
 {
-	void	*north;
-	void	*south;
-	void	*west;
-	void	*east;
-	void	*door;
-	int		floor[3];
-	int		ceiling[3];
-	int		width;
-	int		height;
+	t_img_data	*north;
+	t_img_data	*south;
+	t_img_data	*west;
+	t_img_data	*east;
+	t_img_data	*door;
+	int			floor[3];
+	int			ceiling[3];
+	int			width;
+	int			height;
 }	t_texture;
 
 typedef struct s_img_data
 {
 	void	*img;
 	char	*addr;
+	char	*path;
 	int		bpp;
 	int		line_length;
 	int		endian;
@@ -48,8 +49,8 @@ typedef struct s_cub3d
 	void		*mlx;
 	t_img_data	*img;
 	char		**map;
-	t_texture	texture;
-	t_player	player;
+	t_texture	*texture;
+	t_player	*player;
 	int			map_y;
 	int			map_x;
 }	t_cub3d;

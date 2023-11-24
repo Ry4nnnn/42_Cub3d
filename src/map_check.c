@@ -8,20 +8,15 @@ int	init_textures(t_cub3d *data, char *str)
 	w = 0;
 	h = 0;
 	if (!ft_strncmp(str, "NO ", 3))
-		data->texture.north = mlx_xpm_file_to_image(data->mlx,
-			ft_strchr(str, '.'), &w, &h);
+		data->texture.north = mlx_xpm_file_to_image(data->mlx, ft_strchr(str, '.'), &w, &h);
 	else if (!ft_strncmp(str, "SO ", 3))
-		data->texture.south = mlx_xpm_file_to_image(data->mlx,
-			ft_strchr(str, '.'), &w, &h);
+		data->texture.south = mlx_xpm_file_to_image(data->mlx, ft_strchr(str, '.'), &w, &h);
 	else if (!ft_strncmp(str, "WE ", 3))
-		data->texture.west = mlx_xpm_file_to_image(data->mlx,
-			ft_strchr(str, '.'), &w, &h);
+		data->texture.west = mlx_xpm_file_to_image(data->mlx, ft_strchr(str, '.'), &w, &h);
 	else if (!ft_strncmp(str, "EA ", 3))
-		data->texture.east = mlx_xpm_file_to_image(data->mlx,
-			ft_strchr(str, '.'), &w, &h);
+		data->texture.east = mlx_xpm_file_to_image(data->mlx, ft_strchr(str, '.'), &w, &h);
 	else if (!ft_strncmp(str, "DO ", 3))
-		data->texture.door = mlx_xpm_file_to_image(data->mlx,
-			ft_strchr(str, '.'), &w, &h);
+		data->texture.door = mlx_xpm_file_to_image(data->mlx, ft_strchr(str, '.'), &w, &h);
 	data->texture.width = w;
 	data->texture.height = h;
 	return (0);
@@ -208,7 +203,7 @@ int	init_file_data(t_cub3d *data, char **array)
 			break;
 		}
 		else
-			ft_error(data, "error\n");
+			ft_putstr_fd("Error: Invalid file format\n", 2);
 		i++;
 	}
 	// show_map_info(data);
