@@ -127,21 +127,29 @@ int init_fc_color(t_cub3d *data, char *str)
 	return (0);
 }
 
-// void init_map_layout(t_cub3d *data, char **array, int i)
-// {
-// 		int	j;
+void init_map_layout(t_cub3d *data, char **array, int i)
+{
+		int	j;
+		int	width;
 
-// 		j = i;
-// 		while (array[j])
-// 			j++;
-// 		data->map_y = j - i;
-// 		data->map = malloc(sizeof(char **) * (j - i + 1));
-// 		j = -1;
-// 		while (array[i])
-// 			data->map[++j] = ft_strdup(array[i++]);
-// 		data->map[++j] = NULL;
-// 		// ft_strlcat(data->map[0], "\r\0", ft_strlen(data->map[0]) + 2);
-// }
+		j = i;
+		while (array[j])
+			j++;
+		data->texture->height = j - i;
+		width = ft_strlen(array[i]);
+		data->texture->map = ft_calloc(j - i + 1, sizeof(char *));
+		j = -1;
+		while (array[i])
+			data->texture->map[++j] = ft_strdup(array[i++]);
+		data->texture->map[++j] = NULL;
+		j = -1;
+		while (data->texture->map[++j])
+		{
+			if (width < ft_strlen(data->texture->map[j]))
+				width = ft_strlen(data->texture->map[j]);
+		}
+		data->texture->width = width;
+}
 
 // void	handle_wall_diagonal(t_cub3d *data, int y, int x)
 // {
@@ -277,15 +285,17 @@ int	init_file_data(t_cub3d *data, char **array)
 				break;
 			}
 		}
-		
-		// if (ft_strncmp(array[i], " ", 1) == 0 || ft_strncmp(array[i], "1", 1) == 0)
-		// {
-		// 	init_map_layout(data, array, i);
-		// 	handle_map(data);
-		// 	break;
-		// }
-		// else
-		// 	ft_putstr_fd("Error: Invalid file format\n", 2);
+		else
+		{
+			if (ft_strncmp(array[i], " ", 1) == 0 || ft_strncmp(array[i], "1", 1) == 0)
+			{
+				init_map_layout(data, array, i);
+				// handle_map(data);
+				break;
+			}
+			else
+				ft_putstr_fd("Error: Invalid file format\n", 2);
+		}
 		i++;
 	}
 	// show_map_info(data);
