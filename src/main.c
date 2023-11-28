@@ -9,6 +9,7 @@ int	error_check(t_cub3d *data, int argc, char **argv)
 	}
 	data = ft_calloc(1, sizeof(t_cub3d));
 	init_data(data);
+	printf ("check\n");
 	if (parsing(data, argv[1]) == 1)
 		return (1);
 	return (0);

@@ -7,7 +7,7 @@ INCLUDES	:= ./includes
 
 MLXFLAG 	:= -I/usr/include -Imlx_linux 
 
-CFLAGS		:= -fcommon -DNO_SHARED_MEMORY=1 -Wall -Wextra -Werror
+CFLAGS		:= -fcommon -DNO_SHARED_MEMORY=1 #-Wall -Wextra -Werror
 
 # LINKS		= -framework OpenGL -framework Appkit
 

@@ -8,17 +8,17 @@ int	init_textures(t_cub3d *data, char *str)
 	w = 0;
 	h = 0;
 	if (!ft_strncmp(str, "NO ", 3))
-		data->texture.north = mlx_xpm_file_to_image(data->mlx, ft_strchr(str, '.'), &w, &h);
+		data->texture->north->img = mlx_xpm_file_to_image(data->mlx, ft_strchr(str, '.'), &w, &h);
 	else if (!ft_strncmp(str, "SO ", 3))
-		data->texture.south = mlx_xpm_file_to_image(data->mlx, ft_strchr(str, '.'), &w, &h);
+		data->texture->south->img = mlx_xpm_file_to_image(data->mlx, ft_strchr(str, '.'), &w, &h);
 	else if (!ft_strncmp(str, "WE ", 3))
-		data->texture.west = mlx_xpm_file_to_image(data->mlx, ft_strchr(str, '.'), &w, &h);
+		data->texture->west->img = mlx_xpm_file_to_image(data->mlx, ft_strchr(str, '.'), &w, &h);
 	else if (!ft_strncmp(str, "EA ", 3))
-		data->texture.east = mlx_xpm_file_to_image(data->mlx, ft_strchr(str, '.'), &w, &h);
+		data->texture->east->img = mlx_xpm_file_to_image(data->mlx, ft_strchr(str, '.'), &w, &h);
 	else if (!ft_strncmp(str, "DO ", 3))
-		data->texture.door = mlx_xpm_file_to_image(data->mlx, ft_strchr(str, '.'), &w, &h);
-	data->texture.width = w;
-	data->texture.height = h;
+		data->texture->door->img = mlx_xpm_file_to_image(data->mlx, ft_strchr(str, '.'), &w, &h);
+	data->texture->width = w;
+	data->texture->height = h;
 	return (0);
 }
 
@@ -29,13 +29,13 @@ int init_fc_color(t_cub3d *data, char *str)
 	i = 0;
 	if (!ft_strncmp(str, "F ", 2))
 	{
-		data->texture.floor[0] = ft_atoi(&str[2]);
-		data->texture.floor[1] = ft_atoi(ft_strchr(&str[2], ',') + 1);
-		data->texture.floor[2] = ft_atoi(ft_strchr(ft_strchr(&str[2], ',') + 1, ',') + 1);
-		while (data->texture.floor[i])
+		data->texture->floor[0] = ft_atoi(&str[2]);
+		data->texture->floor[1] = ft_atoi(ft_strchr(&str[2], ',') + 1);
+		data->texture->floor[2] = ft_atoi(ft_strchr(ft_strchr(&str[2], ',') + 1, ',') + 1);
+		while (data->texture->floor[i])
 		{
 			// printf ("floor %i\n", data->texture.floor[i]);
-			if (data->texture.floor[i] < 0 || data->texture.floor[i] > 255)
+			if (data->texture->floor[i] < 0 || data->texture->floor[i] > 255)
 			{
 				printf ("invalid floor color\n");
 				exit (1);
@@ -46,13 +46,13 @@ int init_fc_color(t_cub3d *data, char *str)
 	}
 	else if (!ft_strncmp(str, "C ", 2))
 	{
-		data->texture.ceiling[0] = ft_atoi(&str[2]);
-		data->texture.ceiling[1] = ft_atoi(ft_strchr(&str[2], ',') + 1);
-		data->texture.ceiling[2] = ft_atoi(ft_strchr(ft_strchr(&str[2], ',') + 1, ',') + 1);
-		while (data->texture.ceiling[i])
+		data->texture->ceiling[0] = ft_atoi(&str[2]);
+		data->texture->ceiling[1] = ft_atoi(ft_strchr(&str[2], ',') + 1);
+		data->texture->ceiling[2] = ft_atoi(ft_strchr(ft_strchr(&str[2], ',') + 1, ',') + 1);
+		while (data->texture->ceiling[i])
 		{
 			// printf ("ceiling %i\n", data->texture.ceiling[i]);
-			if (data->texture.ceiling[i] < 0 || data->texture.ceiling[i] > 255)
+			if (data->texture->ceiling[i] < 0 || data->texture->ceiling[i] > 255)
 			{
 				printf ("invalid ceiling color\n");
 				exit (1);
@@ -113,18 +113,18 @@ void	handle_wall_closure(t_cub3d *data, int x, int y)
 
 void	handle_pspawn(t_cub3d *data, int y, int x)
 {
-	if (data->player.spawn_dir != 0
+	if (data->player->spawn_dir != 0
 		&& (data->map[y][x] == 'N' || data->map[y][x] == 'S'
 		|| data->map[y][x] == 'E' || data->map[y][x] == 'W'))
 		ft_error(data, "Multiple player found");
-	else if (data->player.spawn_dir == 0
+	else if (data->player->spawn_dir == 0
 		&& (data->map[y][x] == 'N' || data->map[y][x] == 'S'
 		|| data->map[y][x] == 'E' || data->map[y][x] == 'W'))
 	{
-		data->player.spawn_dir = data->map[y][x];
-		data->player.pos_x = x;
-		data->player.pos_y = y;
-		// data->map[y][x] = '0'; // to allow player to stand/spawn on the floor
+		data->player->spawn_dir = data->map[y][x];
+		data->player->pos_x = x;
+		data->player->pos_y = y;
+		data->map[y][x] = '0'; // to allow player to stand/spawn on the floor
 	}
 	else if (data->map[y][x] != '0' && data->map[y][x] != '1' && data->map[y][x] != '2'
 		&& data->map[y][x] != 'N' && data->map[y][x] != 'S' && data->map[y][x] != '\r'
