@@ -20,9 +20,9 @@ void    ft_error(t_cub3d *data, char *msg)
     i = 0;
     if (data->map)
     {
-        while (data->map[i])
+        while (data->map->layout[i])
         {
-            free (data->map[i]);
+            free (data->map->layout[i]);
             i++;
         }
         free (data->map);

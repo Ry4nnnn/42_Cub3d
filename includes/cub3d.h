@@ -29,8 +29,8 @@ typedef struct s_texture
 	t_img_data	*west;
 	t_img_data	*east;
 	t_img_data	*door;
-	int			floor[3];
-	int			ceiling[3];
+	char		*floor;
+	char		*ceiling;
 	int			width;
 	int			height;
 }	t_texture;
@@ -42,24 +42,26 @@ typedef	struct s_player
 	float	pos_y;
 }	t_player;
 
+typedef struct s_map
+{
+	int height;
+	int width;
+	char	**layout;
+	int pos_x;
+	int pos_y;
+}	t_map;
+
 
 typedef struct s_cub3d
 {
 	void		*win;
 	void		*mlx;
 	t_img_data	*img;
-	char		**map;
+	t_map		*map;
 	t_texture	*texture;
 	t_player	*player;
-	int			map_y;
-	int			map_x;
 }	t_cub3d;
 
-
-/* PARSING */
-int		parsing(t_cub3d *data, char *filename);
-char	**open_file(char *filename);
-int		check_valid_filename(char *filename);
 
 /* MLX UTLIS*/
 void	my_mlx_pixel_put(t_cub3d *data, int x, int y, int color);
@@ -68,12 +70,16 @@ void	my_mlx_pixel_put(t_cub3d *data, int x, int y, int color);
 void    free_2d(char **array);
 
 /* INIT */
-void    init_data(t_cub3d *data);
-
-/* MAP_CHECK */
+void    init_data(t_cub3d *data, char *filename);
+void	init_map_size(t_cub3d *data, char *filename);
+void	init_map_layout(t_cub3d *data, char *filename);
 int	handle_file(t_cub3d *data, char **array);
-// int		map_check(t_cub3d *data, char **file);
-
+void	init_map_vars(t_cub3d *data);
+void	init_textures(t_cub3d *data);
+void init_data(t_cub3d *data, char *filename);
 void    ft_error(t_cub3d *data, char *msg);
+void	handle_wall(t_cub3d *data, char *row, int width);
+void	handle_map(t_cub3d *data);
+int init_window(t_cub3d *data);
 
 #endif

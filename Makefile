@@ -57,7 +57,7 @@ LIBFT_PATH		:= libft
 
 #------------------------FILES-------------------------#
 
-MAIN		= main parsing mlx_utlis map_check utlis init
+MAIN		= main mlx_utlis handle_map utils map_checking init
 
 #------------------------------------------------------#
 
