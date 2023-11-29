@@ -71,7 +71,8 @@ void    free_2d(char **array);
 void    init_data(t_cub3d *data);
 
 /* MAP_CHECK */
-int		map_check(t_cub3d *data, char **file);
+int	handle_file(t_cub3d *data, char **array);
+// int		map_check(t_cub3d *data, char **file);
 
 void    ft_error(t_cub3d *data, char *msg);
 

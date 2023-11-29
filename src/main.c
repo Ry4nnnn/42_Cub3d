@@ -9,7 +9,6 @@ int	error_check(t_cub3d *data, int argc, char **argv)
 	}
 	data = ft_calloc(1, sizeof(t_cub3d));
 	init_data(data);
-	printf ("check\n");
 	if (parsing(data, argv[1]) == 1)
 		return (1);
 	return (0);
@@ -20,6 +19,13 @@ int main(int argc, char	**argv)
 {
 	t_cub3d	*data;
 
+	if (argc != 2)
+	{
+		printf ("invalid input\n");
+		return (1);
+	}
+	if (check_valid_filename(argv[1]) == 1)
+		return(1);
 	data = ft_calloc(1, sizeof(t_cub3d));
 	if (error_check(data, argc, argv) == 1)
 	{
