@@ -56,7 +56,6 @@ int	parsing(t_cub3d *data, char *filename)
 	array  = open_file(filename);
 	if (array == NULL)
 		return (1);
-	(void)data;
 	if (map_check(data, array) == 1)
 	{
 		free_2d(array);

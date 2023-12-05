@@ -4,10 +4,10 @@
 void    init_data(t_cub3d *data)
 {
 	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, SIZE_X, SIZE_Y, "cub3d");
-	data->img = ft_calloc(1, sizeof(t_img_data));
-	data->img->img = mlx_new_image(data->mlx, SIZE_X, SIZE_Y);
-	data->img->addr = mlx_get_data_addr(data->img->img, &data->img->bpp, &data->img->line_length, &data->img->endian);
+	// data->win = mlx_new_window(data->mlx, SIZE_X, SIZE_Y, "cub3d");
+	// data->img = ft_calloc(1, sizeof(t_img_data));
+	// data->img->img = mlx_new_image(data->mlx, SIZE_X, SIZE_Y);
+	// data->img->addr = mlx_get_data_addr(data->img->img, &data->img->bpp, &data->img->line_length, &data->img->endian);
 	data->texture = ft_calloc(1, sizeof(t_texture));
 	data->texture->north = ft_calloc(1, sizeof(t_img_data));
 	data->texture->south = ft_calloc(1, sizeof(t_img_data));
