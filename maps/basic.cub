@@ -1,8 +1,8 @@
-NO ./textures/north.xpm
-SO ./textures/south.xpm
-EA ./textures/brickwall.xpm
-WE ./textures/brickwall.xpm
-DO ./textures/door.xpm
+NO ./as.xpm
+SO ./kl_tower.xpm
+WE ./minecraft_leaf.xpm
+EA ./minecraft_wood.xpm
+DO ./minecraft_wood3.xpm
 
 F 220,100,9
 C 225,30,0

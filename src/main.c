@@ -40,10 +40,7 @@ int main(int argc, char	**argv)
 
 	data = ft_calloc(1, sizeof(t_cub3d));
 	if (error_check(data, argc, argv) == 1)
-	{
-		free(data);
-		exit_hook(data);
-	}
+		error_exit(data);
 	// data->mlx = mlx_init();
 	// data->win = mlx_new_window(data->mlx, SIZE_X, SIZE_Y, "cub3d");
 	// data->img = ft_calloc(1, sizeof(t_img_data));

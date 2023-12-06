@@ -44,10 +44,10 @@ int	check_valid_filename(char *filename)
  */
 char	**open_file(char *filename)
 {
-	int fd;
-	int	i;
-	char buf[1024];
-	char **array;
+	int 	fd;
+	int		i;
+	char	buf[1024];
+	char	**array;
 
 	if (check_valid_filename(filename) == 1)
 		return (NULL);

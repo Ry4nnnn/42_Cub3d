@@ -145,5 +145,7 @@ int		is_wall(t_cub3d *data, int x, int y);
 /* KEY_HOOK */
 int		key_hook(int keycode, t_cub3d *data);
 int		exit_hook(t_cub3d *data);
+int		error_exit(t_cub3d *data);
+
 
 #endif

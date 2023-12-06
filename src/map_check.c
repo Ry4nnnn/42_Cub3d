@@ -153,6 +153,12 @@ int init_fc_color(t_cub3d *data, char *str)
 		}
 		data->texture->ceiling = rgb_to_hex(ft_atoi(num[0]), ft_atoi(num[1]), ft_atoi(num[2]));
 	}
+	else
+	{
+		free_2d(array);
+		free_2d(num);
+		return (1);
+	}
 	free_2d(array);
 	free_2d(num);
 	return (0);
@@ -164,20 +170,16 @@ int	init_map_layout(t_cub3d *data, char **array, int i)
 		int	width;
 
 		j = i;
-		printf("%s\n", array[i]);
 		while (array[j])
 			j++;
-		data->texture->height = j - i + 1;
+		data->texture->height = j - i;
 		printf ("height: %i\n", data->texture->height);
 		width = ft_strlen(array[i]);
-		data->texture->map = ft_calloc(j - i + 2, sizeof(char *));
+		data->texture->map = ft_calloc(j - i + 1, sizeof(char *));
 		j = -1;
-		printf("%s\n", array[i]);
-		i -= 2;
-		while (array[++i])
-			data->texture->map[++j] = ft_strdup(array[i]);
+		while (array[i])
+			data->texture->map[++j] = ft_strdup(array[i++]);
 		data->texture->map[++j] = NULL;
-		printf("j: %i\n", j);
 		j = -1;
 		while (data->texture->map[++j])
 			printf ("map: |%s|\n", data->texture->map[j]);
@@ -187,6 +189,7 @@ int	init_map_layout(t_cub3d *data, char **array, int i)
 			if (width < ft_strlen(data->texture->map[j]))
 				width = ft_strlen(data->texture->map[j]);
 		}
+		printf ("width: %i\n", width);
 		data->texture->width = width;
 		return (0);
 }
@@ -328,6 +331,39 @@ int	handle_wall_closure(t_cub3d *data, int x, int y)
 // 	}
 // }
 
+void	map_resize(t_cub3d *data)
+{
+	int		w;
+	int		i;
+	int		j;
+	char	*tmp;
+
+	w = data->texture->width;
+	i = -1;
+	while (++i < data->texture->height)
+	{
+		if (ft_strlen(data->texture->map[i]) < w)
+		{
+			printf ("map2: |%s|\n", data->texture->map[i]);
+			tmp = data->texture->map[i];
+			data->texture->map[i] = ft_calloc(w + 1, sizeof(char));
+			ft_strlcpy(data->texture->map[i], tmp, ft_strlen(tmp) + 1);
+			j = ft_strlen(tmp);
+			while (j < w)
+			{
+				data->texture->map[i][j] = ' ';
+				j++;
+			}
+			data->texture->map[i][j] = '\0';
+			free (tmp);
+		}
+	}
+	printf("\n");
+	i = -1;
+	while (data->texture->map[++i])
+		printf ("map1: |%s|\n", data->texture->map[i]);
+}
+
 int	handle_map(t_cub3d *data)
 {
 	int y;
@@ -354,8 +390,8 @@ int	handle_map(t_cub3d *data)
 			}
 		}
 			// handle_pspawn(data, y, x);
-		}
-		// handle_walls(data, y, x);
+	}
+	// handle_walls(data, y, x);
 	return (0);
 }
 
@@ -383,15 +419,16 @@ int	init_file_data(t_cub3d *data, char **array)
 	int	result;
 
 	i = 0;
-	// if (array == NULL)
-	// {
-	// 	ft_putstr_fd("Error: Invalid file\n", 2);
-	// 	return (1);
-	// }
+	if (array == NULL)
+	{
+		ft_putstr_fd("Error: Invalid file\n", 2);
+		return (1);
+	}
 	while (array[i])
 	{
 		if (i >= 0 && i <= 4)
 		{
+			// printf("array[%i]: |%s|\n", i, array[i]);
 			result = init_textures(data, array[i]);
 			if (result == 1)
 			{
@@ -401,6 +438,7 @@ int	init_file_data(t_cub3d *data, char **array)
 		}
 		else if (i >= 5 && i <= 6)
 		{
+			// printf("array[%i]: |%s| FC\n",i,  array[i]);
 			result = init_fc_color(data, array[i]);
 			if (result == 1)
 			{
@@ -408,23 +446,21 @@ int	init_file_data(t_cub3d *data, char **array)
 				break;
 			}
 		}
-		else
+		else if (ft_strncmp(array[i], " ", 1) == 0 || ft_strncmp(array[i], "1", 1) == 0)
 		{
-			if (ft_strncmp(array[i], " ", 1) == 0 || ft_strncmp(array[i], "1", 1) == 0)
-			{
-				printf("i: %i\n", i);
-				printf("array[i]: |%s|\n", array[i -1]);
+				// printf("i: %i\n", i);
+				// printf("array[%i]: |%s|\n", i, array[i]);
 				result = init_map_layout(data, array, i);
 				if (result == 1)
 					break;
+				map_resize(data);
 				result = handle_map(data);
 				if (result == 1)
 					break;
 				break;
-			}
-			// else
-			// 	ft_putstr_fd("Error: Invalid file format\n", 2);
 		}
+		else
+			ft_putstr_fd("Error: Invalid file format\n", 2);
 		i++;
 	}
 	// show_map_info(data);
