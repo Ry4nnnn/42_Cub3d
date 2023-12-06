@@ -1,5 +1,7 @@
 #include "cub3d.h"
 
+void	my_mlx_pixel_put(t_cub3d *data, int x, int y, int color);
+
 /**
  * @brief Set the color of a pixel in the image.
  *

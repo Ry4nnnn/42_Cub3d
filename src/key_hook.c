@@ -1,18 +1,8 @@
 #include "cub3d.h"
 
-int	error_exit(t_cub3d *data)
-{
-	free(data->texture->north);
-	free(data->texture->south);
-	free(data->texture->east);
-	free(data->texture->west);
-	free(data->texture->door);
-	free(data->texture);
-	free(data->player);
-	free(data->ray);
-	free(data);
-	exit(1);
-}
+int exit_hook(t_cub3d *data);
+int key_hook(int keycode, t_cub3d *data);
+
 /**
  * @brief Clean-up and exit the program.
  *

@@ -1,5 +1,10 @@
 #include "cub3d.h"
 
+void	half_window(t_cub3d *data, int colour1, int colour2);
+void    change_colour(t_cub3d *data, t_image *img);
+void	drawSquare(t_cub3d	*data, int x, int y, int colour);
+void	drawLine(t_cub3d	*data, int x1, int y1, int x2, int y2, int colour);
+
 void    half_window(t_cub3d *data, int colour1, int colour2)
 {
 	t_image	*img_info;

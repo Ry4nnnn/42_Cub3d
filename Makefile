@@ -57,8 +57,8 @@ LIBFT_PATH		:= libft
 
 #------------------------FILES-------------------------#
 
-MAIN		= main parsing mlx_utlis map_check utlis init key_hook \
-				draw draw_utils
+MAIN		= main parsing mlx_utils map_check utils init key_hook \
+				draw draw_utils error_check exit
 
 #------------------------------------------------------#
 

@@ -106,27 +106,25 @@ typedef struct s_cub3d
 	t_ray		*ray;
 }	t_cub3d;
 
+/* ERROR_CHECK */
+int		error_check(t_cub3d *data, int argc, char **argv);
+int		check_valid_filename(char *filename);
 
 /* PARSING */
 int		parsing(t_cub3d *data, char *filename);
 char	**open_file(char *filename);
-int		check_valid_filename(char *filename);
-
-/* MLX UTLIS*/
-void	my_mlx_pixel_put(t_cub3d *data, int x, int y, int color);
-
-/* UTLIS*/
-void    free_2d(char **array);
-void    ft_swap(int *a, int *b);
-int		degree_to_radian(float degree);
-int 	ft_abs(int a);
-// int		ft_error(t_cub3d *data, char *msg);
 
 /* INIT */
 void    init_data(t_cub3d *data);
+int		init_file_data(t_cub3d *data, char **array);
+int		init_textures(t_cub3d *data, char *str);
+int		init_fc_color(t_cub3d *data, char *str);
+int		init_map_layout(t_cub3d *data, char **array, int i);
 
 /* MAP_CHECK */
-int		map_check(t_cub3d *data, char **file);
+void	map_resize(t_cub3d *data);
+int		check_valid_map(t_cub3d *data);
+int		check_map(t_cub3d *data);
 
 /* DRAW_UTLIS */
 void    change_colour(t_cub3d *data, t_image *img);
@@ -145,7 +143,18 @@ int		is_wall(t_cub3d *data, int x, int y);
 /* KEY_HOOK */
 int		key_hook(int keycode, t_cub3d *data);
 int		exit_hook(t_cub3d *data);
+
+/* EXIT */
 int		error_exit(t_cub3d *data);
 
+/* UTLIS*/
+void    free_2d(char **array);
+void    ft_swap(int *a, int *b);
+int		degree_to_radian(float degree);
+int 	ft_abs(int a);
+int		rgb_to_hex(int r, int g, int b);
+
+/* MLX UTLIS*/
+void	my_mlx_pixel_put(t_cub3d *data, int x, int y, int color);
 
 #endif

@@ -1,5 +1,11 @@
 #include "cub3d.h"
 
+void	drawPlayer(t_cub3d	*data);
+void    drawMap(t_cub3d	*data);
+int		is_wall(t_cub3d *data, int x, int y);
+void	init_ray(t_cub3d *data, t_ray *ray, int x, int w);
+void	drawRay(t_cub3d *data);
+
 /**
  * @brief Draw the player character on the screen.
  *

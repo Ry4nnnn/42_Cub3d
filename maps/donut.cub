@@ -1,0 +1,14 @@
+ NO ./as.xpm
+SO ./kl_tower.xpm
+WE ./minecraft_leaf.xpm
+EA ./minecraft_wood.xpm
+DO ./minecraft_wood3.xpm
+
+F 220,100,0
+C 225,30,0
+
+ 111111111111
+10000001000001
+1000001 100001
+1000000100W001
+ 111111111111
