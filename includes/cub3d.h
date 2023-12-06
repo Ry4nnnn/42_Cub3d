@@ -120,6 +120,7 @@ int		init_file_data(t_cub3d *data, char **array);
 int		init_textures(t_cub3d *data, char *str);
 int		init_fc_color(t_cub3d *data, char *str);
 int		init_map_layout(t_cub3d *data, char **array, int i);
+void	init_player_data(t_cub3d *data, int x, int y, int dir);
 
 /* MAP_CHECK */
 void	map_resize(t_cub3d *data);

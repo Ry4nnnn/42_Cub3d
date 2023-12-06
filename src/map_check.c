@@ -101,6 +101,7 @@ int	check_map(t_cub3d *data)
 {
 	int		i;
 	int		j;
+	int		dir;
 	char	**map;
 
 	i = -1;
@@ -119,6 +120,19 @@ int	check_map(t_cub3d *data)
 					ft_putstr_fd("Error: Invalid Map\n", 2);
 					return (1);
 				}
+			}
+			if (data->texture->map[i][j] == 'N' || data->texture->map[i][j] == 'S'
+			|| data->texture->map[i][j] == 'E' || data->texture->map[i][j] == 'W')
+			{
+				if (data->texture->map[i][j] == 'N')
+					dir = NORTH;
+				else if (data->texture->map[i][j] == 'S')
+					dir = SOUTH;
+				else if (data->texture->map[i][j] == 'E')
+					dir = EAST;
+				else if (data->texture->map[i][j] == 'W')
+					dir = WEST;
+				init_player_data(data, j, i, dir);
 			}
 		}
 	}
