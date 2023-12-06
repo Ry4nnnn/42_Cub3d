@@ -1,5 +1,13 @@
 #include "cub3d.h"
 
+/**
+ * @brief Draw the player character on the screen.
+ *
+ * This function draws a square to represent the player character and a line
+ * to indicate the direction the player is facing.
+ *
+ * @param data The main data structure for the application.
+ */
 void    drawPlayer(t_cub3d	*data)
 {
 	int i;
@@ -27,6 +35,14 @@ void    drawPlayer(t_cub3d	*data)
 	data->player->py /= 22;
 }
 
+/**
+ * @brief Draw the map on the screen.
+ *
+ * This function draws a grid representing the map, with different colors for walls,
+ * open spaces, and the player's position.
+ *
+ * @param data The main data structure for the application.
+ */
 void    drawMap(t_cub3d	*data)
 {
 	char	**map;
@@ -103,6 +119,16 @@ void    drawMap(t_cub3d	*data)
 	}
 }
 
+/**
+ * @brief Check if a position in the map is a wall.
+ *
+ * This function checks if the specified position (x, y) in the map is a wall.
+ *
+ * @param data The main data structure for the application.
+ * @param x The x-coordinate of the position.
+ * @param y The y-coordinate of the position.
+ * @return 0 if the position is not a wall, 1 otherwise.
+ */
 int	is_wall(t_cub3d *data, int x, int y)
 {
 	if (x < 0 || y < 0 || x >= data->texture->width || y >= data->texture->height)
@@ -144,6 +170,17 @@ int	is_wall(t_cub3d *data, int x, int y)
 // 	return (RED);
 // }
 
+/**
+ * @brief Initialize ray parameters for a specific column in the screen.
+ *
+ * This function initializes the ray parameters based on the player's position and direction
+ * for a specific column (x-coordinate) in the screen.
+ *
+ * @param data The main data structure for the application.
+ * @param ray The ray structure to be initialized.
+ * @param x The x-coordinate of the screen column.
+ * @param w The total width of the screen.
+ */
 void	init_ray(t_cub3d *data, t_ray *ray, int x, int w)
 {
 	double	scale;
@@ -163,7 +200,13 @@ void	init_ray(t_cub3d *data, t_ray *ray, int x, int w)
 	ray->yo = (ray->raydiry < 0) ? (data->player->py - ray->my) * ray->dy : (ray->my + 1.0 - data->player->py) * ray->dy;
 }
 
-
+/**
+ * @brief Perform raycasting and draw the resulting image.
+ *
+ * This function performs raycasting for each column in the screen and draws the resulting image.
+ *
+ * @param data The main data structure for the application.
+ */
 void	drawRay(t_cub3d *data)
 {
 	t_ray	*ray;
