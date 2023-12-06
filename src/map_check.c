@@ -234,103 +234,6 @@ int handle_wall_diagonal(t_cub3d *data, int y, int x)
 	return (0);
 }
 
-int	handle_wall_closure(t_cub3d *data, int x, int y)
-{
-	char **map = data->texture->map;
-	(void)x;
-	(void)y;
-	(void)map;
-	(void)data;
-
-	// printf("width: %i\n", data->texture->width);
-	// printf("height: %i\n", data->texture->height);
-	// if (map[y][x + 1])
-	// {
-	// 	printf("1\n");
-	// 	if (map[y][x + 1] != '1' && map[y][x + 1] != ' ' && map[y][x + 1] != '\r')
-	// 	{
-	// 		ft_putstr_fd("Error: Map not closed\n", 2);
-	// 		return (1);
-	// 	}
-	// }
-	// if ((map[y + 1] && map[y + 1][x]) && x < ft_strlen(map[y + 1]))
-	// {
-	// 	printf("2\n");
-	// 	if (map[y + 1][x] != '1' && map[y + 1][x] != ' ' && map[y + 1][x] != '\r')
-	// 	{
-	// 		printf("2.5\n");
-	// 	}
-	// }
-	// if (x - 1 > 0)
-	// {
-	// 	printf("3\n");
-	// 	if (map[y][x - 1] != '1' && map[y][x - 1] != ' ' && map[y][x - 1] != '\r')
-	// 	{
-	// 		ft_putstr_fd("Error: Map not closed\n", 2);
-	// 		return (1);
-	// 	}
-	// }
-	// if (y - 1 > 0 && map[y - 1][x] && x < ft_strlen(map[y - 1]))
-	// {
-	// 	printf("4\n");
-	// 	if (map[y - 1][x] != '1' && map[y - 1][x] != ' ' && map[y - 1][x] != '\r')
-	// 	{
-	// 		ft_putstr_fd("Error: Map not closed\n", 2);
-	// 		return (1);
-	// 	}
-	// }
-	// return (handle_wall_diagonal(data, y, x));
-	return (0);
-}
-
-// void	handle_pspawn(t_cub3d *data, int y, int x)
-// {
-// 	if (data->player.spawn_dir != 0
-// 		&& (data->map[y][x] == 'N' || data->map[y][x] == 'S'
-// 		|| data->map[y][x] == 'E' || data->map[y][x] == 'W'))
-// 		ft_error(data, "Multiple player found");
-// 	else if (data->player.spawn_dir == 0
-// 		&& (data->map[y][x] == 'N' || data->map[y][x] == 'S'
-// 		|| data->map[y][x] == 'E' || data->map[y][x] == 'W'))
-// 	{
-// 		data->player.spawn_dir = data->map[y][x];
-// 		data->player.pos_x = x;
-// 		data->player.pos_y = y;
-// 		// data->map[y][x] = '0'; // to allow player to stand/spawn on the floor
-// 	}
-// 	else if (data->map[y][x] != '0' && data->map[y][x] != '1' && data->map[y][x] != '2'
-// 		&& data->map[y][x] != 'N' && data->map[y][x] != 'S' && data->map[y][x] != '\r'
-// 		&& data->map[y][x] != 'E' && data->map[y][x] != 'W' && data->map[y][x] != ' ')
-// 	{
-// 		printf("%c\n", data->map[y][x]);
-// 		ft_error(data, "Invalid character in map");
-// 	}
-// }
-
-// void	handle_walls(t_cub3d *data, int y, int x)
-// {
-// 	x = -1;
-// 	while (data->map[0][++x])
-// 	{
-// 		if (data->map[0][x] != '1' && data->map[0][x] != ' ' && data->map[0][x] != '\r')
-// 			ft_error(data, "top of the map is not closed");
-// 	}
-// 	x = -1;
-// 	while (data->map[data->map_y - 1][++x])
-// 	{
-// 		if (data->map[data->map_y - 1][x] != '1'
-// 			&& data->map[data->map_y - 1][x] != ' '
-// 			&& data->map[data->map_y - 1][x] != '\r')
-// 			ft_error(data, "bottom of the map is not closed");
-// 	}
-// 	y = -1;
-// 	while (data->map[++y] && data->map[y][0])
-// 	{
-// 		if (data->map[y][0] != '1' && data->map[y][0] != ' ' && data->map[y][0] != '\r')
-// 			ft_error(data, "left side of the map is not closed");
-// 	}
-// }
-
 void	map_resize(t_cub3d *data)
 {
 	int		w;
@@ -401,46 +304,43 @@ int check_valid_map(t_cub3d *data)
 	return (0);
 }
 
-int	handle_map(t_cub3d *data)
+int	check_map(t_cub3d *data)
 {
-	// int y;
-	// int x;
-	// int	result;
-  
-  ;PLOJUHYAdfgi7654q
-	if (check_valid_map(data) == 1)
-		return (1);
-	// y = -1;
-	// while (data->texture->map[++y])
-	// {
-	// 	x = -1;
-	// 	if (ft_strncmp(data->texture->map[y], "\r", 1) == 0)
-	// 	{
-	// 		ft_putstr_fd("Error: empty line found in map.\n", 2);
-	// 		return (1);
-	// 	}
-	// 	while (data->texture->map[y][++x])
-	// 	{
-	// 		// printf("map |%s| |%c|, result |%i|\n", data->texture->map[y], data->texture->map[y][x], result);
-	// 		if (data->texture->map[y][x] == ' ' || data->texture->map[y][x] == '\r')
-	// 		{
-	// 			result = handle_wall_closure(data, y, x);
-	// 			if (result == 1)
-	// 				return (1);				
-	// 		}
-	// 	}
-	// 		// handle_pspawn(data, y, x);
-	// }
-	// // handle_walls(data, y, x);
+	int		i;
+	int		j;
+	char	**map;
+
+	i = -1;
+	map = data->texture->map;
+	while (++i < data->texture->height)
+	{
+		j = -1;
+		while (++j < data->texture->width)
+		{
+			if (data->texture->map[i][j] == '0'|| data->texture->map[i][j] == 'N' \
+			|| data->texture->map[i][j] == 'S' || data->texture->map[i][j] == 'E' \
+			|| data->texture->map[i][j] == 'W')
+			{
+				if (map[i + 1][j] == ' ' || map[i - 1][j] == ' ' || map[i][j + 1] == ' ' || map[i][j - 1] == ' ')
+				{
+					ft_putstr_fd("Error: Invalid Map\n", 2);
+					return (1);
+				}
+			}
+		}
+	}
 	return (0);
 }
 
-// static void	show_map_info(t_cub3d *data)
-// {
-// 	printf ("MAP\n");
-// 	for (int i = 0; data->map[i]; i++)
-// 		printf ("%s\n", data->map[i]);
-// }
+int	handle_map(t_cub3d *data)
+{
+
+	if (check_valid_map(data) == 1)
+		return (1);
+	if (check_map(data) == 1)
+		return (1);
+	return (0);
+}
 
 /**
  * @brief Initialize data from a file.
@@ -503,7 +403,6 @@ int	init_file_data(t_cub3d *data, char **array)
 			ft_putstr_fd("Error: Invalid file format\n", 2);
 		i++;
 	}
-	// show_map_info(data);
 	if (result == 1)
 		return (1);
 	return (0);
