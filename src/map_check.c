@@ -344,7 +344,6 @@ void	map_resize(t_cub3d *data)
 	{
 		if (ft_strlen(data->texture->map[i]) < w)
 		{
-			printf ("map2: |%s|\n", data->texture->map[i]);
 			tmp = data->texture->map[i];
 			data->texture->map[i] = ft_calloc(w + 1, sizeof(char));
 			ft_strlcpy(data->texture->map[i], tmp, ft_strlen(tmp) + 1);
@@ -358,40 +357,81 @@ void	map_resize(t_cub3d *data)
 			free (tmp);
 		}
 	}
-	printf("\n");
+}
+
+// check if map is valid
+// if map contain only not 0, 1, ' ', 'N, S, E, W'
+// if map is closed
+// if map contain only one player
+
+int check_valid_map(t_cub3d *data)
+{
+	int i;
+	int j;
+	int	flag;
+
+	flag = 0;
+	if (ft_strchr(data->texture->map[0], '0') || ft_strchr(data->texture->map[data->texture->height - 1], '0'))
+	{
+		ft_putstr_fd("Error: Map not closed\n", 2);
+		return (1);
+	}
 	i = -1;
-	while (data->texture->map[++i])
-		printf ("map1: |%s|\n", data->texture->map[i]);
+	while (++i < data->texture->height)
+	{
+		j = -1;
+		while (++j < data->texture->width)
+		{
+			if (data->texture->map[i][j] != '0' && data->texture->map[i][j] != '1' && data->texture->map[i][j] != ' '
+				&& data->texture->map[i][j] != 'N' && data->texture->map[i][j] != 'S' && data->texture->map[i][j] != '\r'
+				&& data->texture->map[i][j] != 'E' && data->texture->map[i][j] != 'W')
+			{
+				ft_putstr_fd("Error: Invalid character in map\n", 2);
+				return (1);
+			}
+			if (data->texture->map[i][j] == 'N' || data->texture->map[i][j] == 'S' || data->texture->map[i][j] == 'E' || data->texture->map[i][j] == 'W')
+				flag++;
+		}
+	}
+	if (flag != 1)
+	{
+		ft_putstr_fd("Error: Invalid number of players\n", 2);
+		return (1);
+	}
+	return (0);
 }
 
 int	handle_map(t_cub3d *data)
 {
-	int y;
-	int x;
-	int	result;
-
-	y = -1;
-	while (data->texture->map[++y])
-	{
-		x = -1;
-		if (ft_strncmp(data->texture->map[y], "\r", 1) == 0)
-		{
-			ft_putstr_fd("Error: empty line found in map.\n", 2);
-			return (1);
-		}
-		while (data->texture->map[y][++x])
-		{
-			// printf("map |%s| |%c|, result |%i|\n", data->texture->map[y], data->texture->map[y][x], result);
-			if (data->texture->map[y][x] == ' ' || data->texture->map[y][x] == '\r')
-			{
-				result = handle_wall_closure(data, y, x);
-				if (result == 1)
-					return (1);				
-			}
-		}
-			// handle_pspawn(data, y, x);
-	}
-	// handle_walls(data, y, x);
+	// int y;
+	// int x;
+	// int	result;
+  
+  ;PLOJUHYAdfgi7654q
+	if (check_valid_map(data) == 1)
+		return (1);
+	// y = -1;
+	// while (data->texture->map[++y])
+	// {
+	// 	x = -1;
+	// 	if (ft_strncmp(data->texture->map[y], "\r", 1) == 0)
+	// 	{
+	// 		ft_putstr_fd("Error: empty line found in map.\n", 2);
+	// 		return (1);
+	// 	}
+	// 	while (data->texture->map[y][++x])
+	// 	{
+	// 		// printf("map |%s| |%c|, result |%i|\n", data->texture->map[y], data->texture->map[y][x], result);
+	// 		if (data->texture->map[y][x] == ' ' || data->texture->map[y][x] == '\r')
+	// 		{
+	// 			result = handle_wall_closure(data, y, x);
+	// 			if (result == 1)
+	// 				return (1);				
+	// 		}
+	// 	}
+	// 		// handle_pspawn(data, y, x);
+	// }
+	// // handle_walls(data, y, x);
 	return (0);
 }
 
