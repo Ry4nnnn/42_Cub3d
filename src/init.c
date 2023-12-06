@@ -1,6 +1,13 @@
 #include "cub3d.h"
 
-
+/**
+ * @brief Initialize the main data structure.
+ *
+ * This function initializes the main data structure for the application,
+ * including memory allocation for textures, the player, and the ray.
+ *
+ * @param data The main data structure for the application.
+ */
 void    init_data(t_cub3d *data)
 {
 	data->mlx = mlx_init();
