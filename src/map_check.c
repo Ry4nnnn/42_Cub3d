@@ -1,5 +1,16 @@
 #include "cub3d.h"
 
+/**
+ * @brief Initialize textures based on a given string.
+ *
+ * This function initializes texture data structures based on a string
+ * representing a line from the configuration file. It handles different
+ * types of textures, such as north, south, west, east, and door textures.
+ *
+ * @param data The main data structure for the application.
+ * @param str The string representing a line from the configuration file.
+ * @return 1 if an error occurs, 0 otherwise.
+ */
 int	init_textures(t_cub3d *data, char *str)
 {
 	int		w;
@@ -79,11 +90,32 @@ int	init_textures(t_cub3d *data, char *str)
 	return (0);
 }
 
+/**
+ * @brief Convert RGB values to hexadecimal color.
+ *
+ * This function takes RGB values and converts them to a hexadecimal color.
+ *
+ * @param r Red component (0-255).
+ * @param g Green component (0-255).
+ * @param b Blue component (0-255).
+ * @return The hexadecimal color value.
+ */
 int	rgb_to_hex(int r, int g, int b)
 {
 	return ((r << 16) + (g << 8) + b);
 }
 
+/**
+ * @brief Initialize floor and ceiling colors based on a given string.
+ *
+ * This function initializes floor and ceiling colors based on a string
+ * representing a line from the configuration file. It handles the 'F' and 'C'
+ * options, parsing RGB values and converting them to hexadecimal colors.
+ *
+ * @param data The main data structure for the application.
+ * @param str The string representing a line from the configuration file.
+ * @return 1 if an error occurs, 0 otherwise.
+ */
 int init_fc_color(t_cub3d *data, char *str)
 {
 	int i;
@@ -334,6 +366,17 @@ int	handle_map(t_cub3d *data)
 // 		printf ("%s\n", data->map[i]);
 // }
 
+/**
+ * @brief Initialize data from a file.
+ *
+ * This function reads an array of strings, typically representing lines
+ * from a configuration file, and initializes various components of the
+ * t_cub3d structure, including textures and color settings.
+ *
+ * @param data The main data structure for the application.
+ * @param array An array of strings representing lines from the file.
+ * @return 1 if an error occurs, 0 otherwise.
+ */
 int	init_file_data(t_cub3d *data, char **array)
 {
 	int i;
@@ -390,6 +433,17 @@ int	init_file_data(t_cub3d *data, char **array)
 	return (0);
 }
 
+/**
+ * @brief Check and initialize map data.
+ *
+ * This function checks and initializes map-related data by calling the
+ * `init_file_data` function. It processes an array of strings representing
+ * lines from a configuration file.
+ *
+ * @param data The main data structure for the application.
+ * @param array An array of strings representing lines from the file.
+ * @return 1 if an error occurs during initialization, 0 otherwise.
+ */
 int	map_check(t_cub3d *data, char **array)
 {
     if(init_file_data(data, array) == 1)
