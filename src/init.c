@@ -24,8 +24,6 @@ void    init_data(t_cub3d *data)
 	data->texture->east = ft_calloc(1, sizeof(t_img_data));
 	data->texture->door = ft_calloc(1, sizeof(t_img_data));
     data->player = ft_calloc(1, sizeof(t_player));
-    // data->player->px = 26.25;
-	// data->player->py = 11.25;
     data->player->dirx = -1;
     data->player->diry =  0;
     data->player->planex = 0;
@@ -277,35 +275,35 @@ int	init_map_layout(t_cub3d *data, char **array, int i)
 
 void	init_player_data(t_cub3d *data, int x, int y, int dir)
 {
-	data->player->px = x + 0.5;
-	data->player->py = y + 0.5;
+	data->player->px = x + 0.2;
+	data->player->py = y + 0.2;
 	(void)dir;
-	// if (dir == NORTH)
-	// {
-	// 	data->player->dirx = -1;
-	// 	data->player->diry = 0;
-	// 	data->player->planex = 0;
-	// 	data->player->planey = 0.45;
-	// }
-	// else if (dir == SOUTH)
-	// {
-	// 	data->player->dirx = 0;
-	// 	data->player->diry = 1;
-	// 	data->player->planex = -0.45;
-	// 	data->player->planey = 0;
-	// }
-	// else if (dir == EAST)
-	// {
-	// 	data->player->dirx = 1;
-	// 	data->player->diry = 0;
-	// 	data->player->planex = 0;
-	// 	data->player->planey = -0.45;
-	// }
-	// else if (dir == WEST)
-	// {
-	// 	data->player->dirx = 0;
-	// 	data->player->diry = -1;
-	// 	data->player->planex = 0.45;
-	// 	data->player->planey = 0;
-	// }
+	if (dir == NORTH)
+	{
+		data->player->dirx = -1;
+		data->player->diry = 0;
+		data->player->planex = 0;
+		data->player->planey = 0.45;
+	}
+	else if (dir == SOUTH)
+	{
+		data->player->dirx = 1;
+		data->player->diry = 0;
+		data->player->planex = 0;
+		data->player->planey = -0.45;
+	}
+	else if (dir == EAST)
+	{
+		data->player->dirx = 1;
+		data->player->diry = 0;
+		data->player->planex = 0;
+		data->player->planey = -0.45;
+	}
+	else if (dir == WEST)
+	{
+		data->player->dirx = -1;
+		data->player->diry = 0;
+		data->player->planex = 0;
+		data->player->planey = 0.45;
+	}
 }
