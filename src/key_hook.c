@@ -1,6 +1,13 @@
 #include "cub3d.h"
 
-
+/**
+ * @brief Clean-up and exit the program.
+ *
+ * This function is called when the user initiates an exit action.
+ * It performs cleanup by destroying the image, window, display, and freeing allocated memory.
+ *
+ * @param data The main data structure for the application.
+ */
 int	exit_hook(t_cub3d *data)
 {
 	mlx_destroy_image(data->mlx, data->img->img);
@@ -14,6 +21,17 @@ int	exit_hook(t_cub3d *data)
 	exit(0);
 }
 
+
+/**
+ * @brief Handle keyboard input events.
+ *
+ * This function is responsible for handling keyboard input events,
+ * such as moving the player or exiting the program.
+ *
+ * @param keycode The keycode representing the pressed key.
+ * @param data The main data structure for the application.
+ * @return Always returns 0.
+ */
 int	key_hook(int keycode, t_cub3d *data)
 {
 	double	old_dirx;
