@@ -57,5 +57,5 @@ my_mlx_pixel_put(data, SIZE_X - draw.x, draw.y, *(unsigned int*)dest);
 
 ---
 ### Contributore
-- ziqiqiiii(https://github.com/ziqiqiiii)
-- Ry4nnnn(https://github.com/Ry4nnnn)
+- [ziqiqiiii](https://github.com/ziqiqiiii)
+- [Ry4nnnn](https://github.com/Ry4nnnn)
