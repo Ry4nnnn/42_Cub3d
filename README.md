@@ -8,7 +8,13 @@ This readme will be divided into two parts. The first part is about simple intro
 ## Algorithms used in this project
 ### DDA Algorithm
 
+---
 ### Fix Fisheye Effects
+The fisheye effect is fixed by 
+```C
+ray->perpwalldist *= cos(ray->raydirx - data->player->dirx);
+
+```
 
 ---
 ### Print images on walls
