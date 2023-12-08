@@ -200,7 +200,8 @@ void	draw_texture(t_cub3d *data, int x)
 	while (++draw.y <= data->ray->drawend)
 	{
 		wall.x = (int)(wall_hit * data->current_texture->width);
-		wall.y = (int)(((double)((draw.y - data->ray->drawstart)) / (double)data->ray->lineheight) * data->current_texture->width);
+		wall.y = (int)(((double)((draw.y - data->ray->drawstart)) / (double)data->ray->lineheight) \
+						* data->current_texture->width);
 		wall_index = wall.x * (data->current_texture->bpp / 8) + wall.y * data->current_texture->line_length;
 		dest = data->current_texture->addr + wall_index;
 		my_mlx_pixel_put(data, SIZE_X - draw.x, draw.y, *(unsigned int*)dest);
