@@ -3,9 +3,9 @@ This is a simple game project inspired by Wolfenstein 3D. This project is also o
 
 This readme will be divided into two parts. The first part is about simple introduction of the project, aka the installation, compilation, instructions to play the game, and parameters to parse into the program. The second part will dive deep into the algorithms used.
 
-## Introduction of the project
+## (Part 1) Introduction of the project
 
-## Algorithms used in this project
+## (Part 2) Algorithms used in this project
 ### DDA Algorithm
 
 ---
