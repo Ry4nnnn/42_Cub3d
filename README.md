@@ -1,10 +1,23 @@
 # 42_Cub3d
-This is a simple game project inspired by Wolfenstein 3D. This project is also one of the projects in 42 core program.
 
 This readme will be divided into two parts. The first part is about simple introduction of the project, aka the installation, compilation, instructions to play the game, and parameters to parse into the program. The second part will dive deep into the algorithms used.
 
 ## (Part 1) Introduction of the project
+### About
+Cub3D is a dynamic first-person view game that utilizes ray-casting techniques.This is a simple game project inspired by Wolfenstein 3D.
 
+### Controls
+| characters   |                      |
+|:------------:|:---------------------|
+| 'W'          | Move forward         |
+| 'S'          | Move backward        |
+| 'A'          | Move left            |
+| 'D'          | Move Right           |
+| 'left arrow' | Rotate left          |
+| 'right aarow'| Rotate right         |
+
+---
+### 
 ## (Part 2) Algorithms used in this project
 ### DDA Algorithm
 
