@@ -1,4 +1,5 @@
 # 42_Cub3d
+This is a simple game project inspired by Wolfenstein 3D. This project is also one of the projects in 42 core program.
 
 ### DDA Algorithm
 
@@ -53,3 +54,8 @@ wall_index = wall.x * (data->current_texture->bpp / 8) + wall.y * data->current_
 dest = data->current_texture->addr + wall_index;
 my_mlx_pixel_put(data, SIZE_X - draw.x, draw.y, *(unsigned int*)dest);
 ```
+
+---
+### Contributore
+- ziqiqiiii(https://github.com/ziqiqiiii)
+- Ry4nnnn(https://github.com/Ry4nnnn)
