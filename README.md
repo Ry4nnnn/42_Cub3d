@@ -17,10 +17,8 @@ The function (draw_texture) is responsible for drawing the texture on the wall b
 | wall.x, wall.y         | the coordinates in the texture image where to get pixel colour | 
 
 
-```
-if (ray->side == 0) //the wall is hitting vertical walls (west or east)
+     if (ray->side == 0) //the wall is hitting vertical walls (west or east)
     wall_hit = player->py + ray->perpwalldist * ray->diry;
 else
     wall_hit = playe->px + ray->perpwalldist * ray->dirx;
 wall_hit -= floor(wall_hit); //normalize it to start from 0 
-```
