@@ -198,19 +198,14 @@ void	draw_texture(t_cub3d *data, int x)
 	}
 	wall_hit -= floor(wall_hit);
 	// wall_hit trying to set coordinates of texture between 0 and 1
-	// printf("wall_hit: %f\n", wall_hit);
 	draw_x = x;
 	draw_y = data->ray->drawstart - 1;
 	while (++draw_y <= data->ray->drawend)
 	{
 		wx = (int)(wall_hit * data->current_texture->width);
 		wy = (int)(((double)((draw_y - data->ray->drawstart)) / (double)data->ray->lineheight) * data->current_texture->width);
-		// printf("wx: %d\n", wx);
-		// printf("wy: %d\n", wy);
 		wall_index = wx * (data->current_texture->bpp / 8) + wy * data->current_texture->line_length;
 		dest = data->current_texture->addr + wall_index;
-		// printf("wall_index: %d\n", wall_index);
-		// printf("dest: |%i|\n", *(unsigned int *)dest);
 		my_mlx_pixel_put(data, SIZE_X - draw_x, draw_y, *(unsigned int*)dest);
 	}
 }
