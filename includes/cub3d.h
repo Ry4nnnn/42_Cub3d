@@ -163,9 +163,6 @@ int		error_exit(t_cub3d *data);
 
 /* UTLIS*/
 void    free_2d(char **array);
-void    ft_swap(int *a, int *b);
-int		degree_to_radian(float degree);
-int 	ft_abs(int a);
 int		rgb_to_hex(int r, int g, int b);
 
 /* MLX UTLIS*/

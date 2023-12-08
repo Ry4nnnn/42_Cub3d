@@ -3,8 +3,6 @@
 void	half_window(t_cub3d *data, int colour1, int colour2);
 void    change_colour(t_cub3d *data, t_image *img);
 void	drawSquare(t_cub3d	*data, int x, int y, int colour);
-void	drawLine(t_cub3d	*data, int x1, int y1, int x2, int y2, int colour);
-
 void    half_window(t_cub3d *data, int colour1, int colour2)
 {
 	t_image	*img_info;
@@ -51,31 +49,3 @@ void	drawSquare(t_cub3d	*data, int x, int y, int colour)
 			my_mlx_pixel_put(data, i, j, colour);
 	}
 }
-
-void drawLine(t_cub3d	*data, int x1, int y1, int x2, int y2, int colour)  
-{  
-    int dx;
-	int	dy;
-	int	p;
-	int	x;
-	int	y;
-	int	s;
-
-    dx=ft_abs(x2-x1);
-    dy=ft_abs(y2-y1);
-	if (dx >= dy)
-		s = dx;
-	else
-		s = dy;
-	dx /= s;
-	dy /= s;
-    x=x1;  
-    y=y1;  
-    p = -1;
-    while(++p <= s)  
-	{  
-        x += dx;
-		y += dy;
-        my_mlx_pixel_put(data, x,y,colour);
-	}
-}  

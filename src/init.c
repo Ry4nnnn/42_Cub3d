@@ -106,7 +106,6 @@ int	init_textures(t_cub3d *data, char *str)
 	if (ft_strchr(str, '.') == NULL)
 		return (1);
 	path = ft_strjoin("./images/", ft_strchr(str, '.') + 2);
-	// printf ("path: |%s|\n", path);
 	if (!ft_strncmp(str, "NO ", 3))
 	{
 		data->texture->north->img_ptr = mlx_xpm_file_to_image(data->mlx, path, &w, &h);
@@ -118,7 +117,7 @@ int	init_textures(t_cub3d *data, char *str)
 		data->texture->north->addr = mlx_get_data_addr(data->texture->north->img_ptr, &data->texture->north->bpp, &data->texture->north->line_length, &data->texture->north->endian);
 		data->texture->north->width = w;
 		data->texture->north->height = h;
-		// printf("north width: %i\n", data->texture->north->width);
+		printf("north width: %i\n", data->texture->north->width);
 	}
 	else if (!ft_strncmp(str, "SO ", 3))
 	{
@@ -171,6 +170,11 @@ int	init_textures(t_cub3d *data, char *str)
 		data->texture->door->width = w;
 		data->texture->door->height = h;
 		// printf("door width: %i\n", data->texture->door->width);
+	}
+	else
+	{
+		free (path);
+		return (1);
 	}
 	free (path);
 	return (0);
