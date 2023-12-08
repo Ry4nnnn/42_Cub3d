@@ -27,15 +27,11 @@
 
 # define TILE_SIZE 16
 
-typedef struct s_line
+typedef struct s_coord
 {
 	int x;
 	int y;
-	int y0;
-	int y1;
-	int tex_x;
-	int tex_y;
-} t_line;
+} t_coord;
 
 typedef struct s_image
 {

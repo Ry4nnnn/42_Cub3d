@@ -168,45 +168,42 @@ void	init_ray(t_cub3d *data, t_ray *ray, int x, int w)
 	ray->yo = (ray->raydiry < 0) ? (data->player->py - ray->my) * ray->dy : (ray->my + 1.0 - data->player->py) * ray->dy;
 }
 
+/**
+ * @brief Draw a texture on the screen.
+ *
+ * This function draws a texture on the screen based on the ray parameters.
+ *
+ * @param data The main data structure for the application.
+ * @param x The x-coordinate of the screen column.
+ */
 void	draw_texture(t_cub3d *data, int x)
 {
-	int		wx;
-	int		wy;
-	int		draw_x;
-	int		draw_y;
+	t_coord	wall;
+	t_coord	draw;
 	int		wall_index;
 	double	wall_hit;
 	char	*dest;
 
-
-	(void)x;
-	(void)wx;
-	(void)wy;
-	(void)draw_x;
-	(void)draw_y;
-	(void)wall_index;
-	(void)wall_hit;
-	(void)dest;
-	(void)data;
 	if (data->ray->side == 0)
 	{
-		wall_hit = (data->player->py + data->ray->perpwalldist * (data->ray->raydiry ));
+		wall_hit = (data->player->py + \
+					data->ray->perpwalldist * (data->ray->raydiry ));
 	}
 	else
 	{
-		wall_hit = (data->player->px + data->ray->perpwalldist * (data->ray->raydirx));
+		wall_hit = (data->player->px + \
+					data->ray->perpwalldist * (data->ray->raydirx));
 	}
 	wall_hit -= floor(wall_hit);
-	// wall_hit trying to set coordinates of texture between 0 and 1
-	draw_x = x;
-	draw_y = data->ray->drawstart - 1;
-	while (++draw_y <= data->ray->drawend)
+	draw.x = x;
+	draw.y = data->ray->drawstart - 1;
+	while (++draw.y <= data->ray->drawend)
 	{
-		wx = (int)(wall_hit * data->current_texture->width);
-		wy = (int)(((double)((draw_y - data->ray->drawstart)) / (double)data->ray->lineheight) * data->current_texture->width);
-		wall_index = wx * (data->current_texture->bpp / 8) + wy * data->current_texture->line_length;
+		wall.x = (int)(wall_hit * data->current_texture->width);
+		wall.y = (int)(((double)((draw.y - data->ray->drawstart)) / (double)data->ray->lineheight) * data->current_texture->width);
+		wall_index = wall.x * (data->current_texture->bpp / 8) + wall.y * data->current_texture->line_length;
 		dest = data->current_texture->addr + wall_index;
-		my_mlx_pixel_put(data, SIZE_X - draw_x, draw_y, *(unsigned int*)dest);
+		my_mlx_pixel_put(data, SIZE_X - draw.x, draw.y, *(unsigned int*)dest);
 	}
 }
 
