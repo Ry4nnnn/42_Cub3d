@@ -25,6 +25,18 @@
 # define EAST 2
 # define WEST 3
 
+# define TILE_SIZE 16
+
+typedef struct s_line
+{
+	int x;
+	int y;
+	int y0;
+	int y1;
+	int tex_x;
+	int tex_y;
+} t_line;
+
 typedef struct s_image
 {
 	int		start_x;
@@ -104,6 +116,7 @@ typedef struct s_cub3d
 	t_texture	*texture;
 	t_player	*player;
 	t_ray		*ray;
+	t_img_data	*current_texture;
 }	t_cub3d;
 
 /* ERROR_CHECK */

@@ -44,7 +44,6 @@ int	key_hook(int keycode, t_cub3d *data)
 
 	angle = 5/180.0 * PI;
 	move_speed = 0.1;
-	printf("keycode: %d\n", keycode);
 	if (keycode == 65307)
 		exit_hook(data);
 	if (keycode == 'w')

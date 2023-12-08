@@ -4,7 +4,7 @@ int	loop_hook(t_cub3d *data)
 {
 	half_window(data, data->texture->ceiling, data->texture->floor);
 	drawRay(data);
-	drawMap(data);
+	// drawMap(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	return (0);
 }

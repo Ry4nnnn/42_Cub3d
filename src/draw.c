@@ -200,6 +200,53 @@ void	init_ray(t_cub3d *data, t_ray *ray, int x, int w)
 	ray->yo = (ray->raydiry < 0) ? (data->player->py - ray->my) * ray->dy : (ray->my + 1.0 - data->player->py) * ray->dy;
 }
 
+void	draw_texture(t_cub3d *data, int x)
+{
+	int		wx;
+	int		wy;
+	int		draw_x;
+	int		draw_y;
+	int		wall_index;
+	double	wall_hit;
+	char	*dest;
+
+
+	(void)x;
+	(void)wx;
+	(void)wy;
+	(void)draw_x;
+	(void)draw_y;
+	(void)wall_index;
+	(void)wall_hit;
+	(void)dest;
+	(void)data;
+	if (data->ray->side == 0)
+	{
+		wall_hit = (data->player->py + data->ray->perpwalldist * (data->ray->raydiry ));
+	}
+	else
+	{
+		wall_hit = (data->player->px + data->ray->perpwalldist * (data->ray->raydirx));
+	}
+	wall_hit -= floor(wall_hit);
+	// wall_hit trying to set coordinates of texture between 0 and 1
+	// printf("wall_hit: %f\n", wall_hit);
+	draw_x = x;
+	draw_y = data->ray->drawstart - 1;
+	while (++draw_y <= data->ray->drawend)
+	{
+		wx = (int)(wall_hit * data->current_texture->width);
+		wy = (int)(((double)((draw_y - data->ray->drawstart)) / (double)data->ray->lineheight) * data->current_texture->width);
+		// printf("wx: %d\n", wx);
+		// printf("wy: %d\n", wy);
+		wall_index = wx * (data->current_texture->bpp / 8) + wy * data->current_texture->line_length;
+		dest = data->current_texture->addr + wall_index;
+		// printf("wall_index: %d\n", wall_index);
+		// printf("dest: |%i|\n", *(unsigned int *)dest);
+		my_mlx_pixel_put(data, SIZE_X - draw_x, draw_y, *(unsigned int*)dest);
+	}
+}
+
 /**
  * @brief Perform raycasting and draw the resulting image.
  *
@@ -256,21 +303,20 @@ void	drawRay(t_cub3d *data)
 		else
 			ray->north_south = (ray->stepy == 1) ? SOUTH : NORTH;
 		if (ray->north_south != -1)
-			colour = (ray->north_south == NORTH) ? RED : BLUE;
+			data->current_texture = (ray->north_south == NORTH) ? data->texture->north : data->texture->south;
+		if (ray->east_west != -1)
+			data->current_texture = (ray->east_west == EAST) ? data->texture->east : data->texture->west;
+		
+		if (ray->north_south != -1)
+			colour = (ray->north_south == NORTH) ? RED : BLUE;	
 		if (ray->east_west != -1)
 			colour = (ray->east_west == EAST) ? GREEN : ORANGE;
-		// if (ray->north_south == NORTH)
-		// {
-		// 	j = ray->drawstart - 1;
-		// 	while (++j <= ray->drawend)
-		// 		my_mlx_pixel_put(data, i, j, (int)texture_pixel_color(data, ray));	
-		// }
-		// else
-		// {
-			j = ray->drawstart - 1;
-			while (++j <= ray->drawend)
-				my_mlx_pixel_put(data, SIZE_X - i , j, colour);
-		// }
+		(void)colour;
+		j = ray->drawstart - 1;
+		(void)j;
+		draw_texture(data, i);
+		// while (++j <= ray->drawend)
+		// 	my_mlx_pixel_put(data, SIZE_X - i , j, colour);
+		}
 			
-	}
 }
