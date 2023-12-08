@@ -4,8 +4,8 @@ WE ./minecraft_leaf.xpm
 EA ./minecraft_wood.xpm
 DO ./minecraft_wood3.xpm
 
-F 220,100,0
-C 225,30,0
+C 230,253,131
+F 183,219,247
 
         111111
         10S001
