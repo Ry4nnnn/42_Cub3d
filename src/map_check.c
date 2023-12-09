@@ -21,7 +21,7 @@ void	map_resize(t_cub3d *data)
 	w = data->texture->width;
 	i = -1;
 	while (++i < data->texture->height)
-	{
+	{	
 		if (ft_strlen(data->texture->map[i]) < w)
 		{
 			tmp = data->texture->map[i];
@@ -37,9 +37,6 @@ void	map_resize(t_cub3d *data)
 			free (tmp);
 		}
 	}
-	j = -1;
-	while (data->texture->map[++j])
-		printf("|%s|\n", data->texture->map[j]);
 }
 
 /**

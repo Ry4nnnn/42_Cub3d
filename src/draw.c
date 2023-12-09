@@ -49,75 +49,47 @@ void    drawPlayer(t_cub3d	*data)
  *
  * @param data The main data structure for the application.
  */
-// void    drawMap(t_cub3d	*data)
-// {
-// 	char	**map;
-// 	int		i;
-// 	int		j;
+void    drawMap(t_cub3d	*data)
+{
+	int	i;
+	int	j;
+	int	r;
 
-// 	int		x;
-// 	int		y;
-
-// 	int		dx;
-// 	int		dy;
-
-// 	map = data->texture->map;
-// 	j = -1;
-// 	while(++j < 198)
-// 	{
-// 		i = -1;
-// 		while (++i < 198)
-// 			my_mlx_pixel_put(data, i, j, 0x007DC3E9);	
-// 	}
-// 	i = 0;
-// 	x = (int)(data->player->px) - 4;
-// 	{
-// 		x++;
-// 		i += 22;
-// 	}
-// 	printf("width: %d\n", data->texture->width);
-// 	printf("height: %d\n", data->texture->height);
-// 	while (i < 198)
-// 	{
-// 		j = 0;
-// 		y = (int)(data->player->py) - 4;
-// 		while (y < 0)
-// 		{
-// 			y++;
-// 			j += 22;
-// 		}
-// 		while (j < 198)
-// 		{
-// 			printf("x: %d, y: %d\n", x, y);
-// 			if (x >= data->texture->width || y >= data->texture->width || x < 0 || y < 0)
-// 				break;
-// 			if (map[y][x] == '1')
-// 				drawSquare(data, i, j, 0x00FFFFFF);
-// 			else if (map[y][x] == '0' || map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E' || map[y][x] == 'W') 
-// 				drawSquare(data, i, j, 0x00111111);
-// 			j += 22;
-// 			y++;
-// 		}
-// 		i += 22;
-// 		x++;
-// 	}
-// 	drawSquare(data, 88, 88, 0x00E97D7D);
-// 	i = -1;
-// 	while (++i < 25)
-// 	{
-// 		dx = i * (data->player->dirx);
-// 		dy = i * (data->player->diry);
-// 		my_mlx_pixel_put(data, 88 + 10+ dx, 88 + 10 + dy, 0x00E97D7D);
-// 		my_mlx_pixel_put(data, 88 + 11 + dx, 88 + 11 + dy, 0x00E97D7D);
-// 		my_mlx_pixel_put(data, 88 + 12 + dx, 88 + 12 + dy, 0x00E97D7D);
+	j = -1;
+	while(++j < 198)
+	{
+		i = -1;
+		while (++i < 198)
+			my_mlx_pixel_put(data, i, j, 0x007DC3E9);	
+	}
+	i = -1;
+	while (++i < 9)
+	{
+		j = -1;
+		while (++j < 9)
+		{
+			r = is_wall(data, (int)(data->player->px) - 4 + i, (int)(data->player->py) - 4 + j);
+			if (r == 0)
+				drawSquare(data, i * 22, j * 22, 0x00FFFFFF);
+			else if (r == 2)
+				drawSquare(data, i * 22, j * 22, 0x00111111);
+			else
+				continue;
+			
+		}
+	}
+	drawSquare(data, 88, 88, 0x00E97D7D);
+	r = -1;
+	while (++r < 25)
+	{
+		i = r * (data->player->dirx);
+		j = r * (data->player->diry);
+		my_mlx_pixel_put(data, 88 + 10 + i, 88 + 10 + j, 0x00E97D7D);
+		my_mlx_pixel_put(data, 88 + 11 + i, 88 + 11 + j, 0x00E97D7D);
+		my_mlx_pixel_put(data, 88 + 12 + i, 88 + 12 + j, 0x00E97D7D);
 	
-// 	}
-// 	(void)map;
-// 	(void)x;
-// 	(void)y;
-// 	(void)dx;
-// 	(void)dy;
-// }
+	}
+}
 
 /**
  * @brief Check if a position in the map is a wall.
@@ -135,7 +107,12 @@ int	is_wall(t_cub3d *data, int x, int y)
 		return (1);
 	if (data->texture->map[y][x] == '1')
 		return (0);
-	return (1);
+	else if(data->texture->map[y][x] == '0' || data->texture->map[y][x] == 'N' \
+			|| data->texture->map[y][x] == 'S' || data->texture->map[y][x] == 'E' \
+			|| data->texture->map[y][x] == 'W')
+		return (2);
+	else
+		return (3);
 }
 
 /**

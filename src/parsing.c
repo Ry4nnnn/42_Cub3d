@@ -52,7 +52,7 @@ char	**open_file(char *filename)
 {
 	int 	fd;
 	int		i;
-	char	buf[1024];
+	char	buf[2000];
 	char	**array;
 
 	if (check_valid_filename(filename) == 1)
@@ -63,7 +63,7 @@ char	**open_file(char *filename)
 		ft_putstr_fd("File not found!\n", 2);
 		return (NULL);
 	}
-	i = read(fd, buf, 1024);
+	i = read(fd, buf, 2000);
 	buf[i] = '\0';
 	array = ft_split(buf, '\n');
 	return (array);
