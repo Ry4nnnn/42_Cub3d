@@ -62,7 +62,6 @@ MAIN		= main parsing mlx_utils map_check utils init key_hook \
 
 #------------------------------------------------------#
 
-# SRCS		:= $(addsuffix .c, $(addprefix $(SRCS_PATH)/$(BUILTINS_PATH)/, $(BUILTINS))
 SRCS		+= $(addsuffix .c, $(addprefix $(SRCS_PATH)/, $(MAIN)))
 
 OBJS		+= $(addsuffix .o, $(addprefix $(OBJS_PATH)/, $(MAIN)))
