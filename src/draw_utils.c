@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 14:22:15 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 14:44:27 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/09 19:03:20 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	half_window(t_cub3d *data, int colour1, int colour2);
 void	change_colour(t_cub3d *data, t_image *img);
 void	drawsquare(t_cub3d	*data, int x, int y, int colour);
+int		is_wall(t_cub3d *data, int x, int y);
 
 void	half_window(t_cub3d *data, int colour1, int colour2)
 {
@@ -61,4 +62,37 @@ void	drawsquare(t_cub3d	*data, int x, int y, int colour)
 		while (++i <= x + 20)
 			my_mlx_pixel_put(data, i, j, colour);
 	}
+}
+
+/**
+ * @brief Check if a given position is a wall or other element.
+ *
+ * This function checks if a given position in the map is a wall or another
+ * type of element. It returns different values based on the content of the
+ * map at the specified position.
+ *
+ * @param data The main data structure for the application.
+ * @param x The x-coordinate of the position.
+ * @param y The y-coordinate of the position.
+ * @return 0 if the position is an open space, 1 if out of bounds, 
+ * 2 if the position is a wall or other element, 3 for other cases.
+ */
+int	is_wall(t_cub3d *data, int x, int y)
+{
+	if (x < 0 || y < 0 || x >= data->texture->width \
+		|| y >= data->texture->height)
+		return (1);
+	if (data->texture->map[y][x] == '1')
+		return (0);
+	else if (data->texture->map[y][x] == 'N' \
+			|| data->texture->map[y][x] == 'S' \
+			|| data->texture->map[y][x] == 'E' \
+			|| data->texture->map[y][x] == 'W')
+		return (2);
+	else if (data->texture->map[y][x] == '0')
+		return (3);
+	else if (data->texture->map[y][x] == ' ')
+		return (4);
+	else
+		return (1);
 }

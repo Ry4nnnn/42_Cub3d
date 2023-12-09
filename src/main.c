@@ -6,12 +6,19 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 14:43:27 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 17:52:37 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/09 19:14:35 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**
+ * @brief Exit the program.
+ *
+ * This function frees all allocated memory and exits the program.
+ *
+ * @param data The main data structure for the application.
+ */
 int	loop_hook(t_cub3d *data)
 {
 	half_window(data, data->texture->ceiling, data->texture->floor);

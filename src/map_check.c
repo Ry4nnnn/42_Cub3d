@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 15:07:43 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 18:51:08 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/09 19:14:18 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	check_map(t_cub3d *data)
 			w = is_wall(data, j, i);
 			if (w == 2 || w == 3)
 			{
-				if (check_up_down_left_right(data, j, i))
+				if (check_up_down_left_right(data, i, j))
 					return (1);
 			}
 			if (w == 2)

@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 14:42:08 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 18:13:13 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/09 19:03:55 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,15 +184,19 @@ int		check_map(t_cub3d *data);
 /* CHECK_VALID_MAP */
 int		check_valid_map(t_cub3d *data);
 
-/* DRAW_UTLIS */
-void	change_colour(t_cub3d *data, t_image *img);
-void	half_window(t_cub3d *data, int colour1, int colour2);
-void	drawsquare(t_cub3d	*data, int x, int y, int colour);
-
-/* DRAW */
-void	drawplayer(t_cub3d	*data);
+/* DRAWMAP */
 void	drawmap(t_cub3d	*data);
+
+/* DRAWTEXTURE */
+void	draw_texture(t_cub3d *data, int x);
+
+/* DRAWRAY */
 void	drawray(t_cub3d *data);
+
+/* DRAW_UTLIS */
+void	half_window(t_cub3d *data, int colour1, int colour2);
+void	change_colour(t_cub3d *data, t_image *img);
+void	drawsquare(t_cub3d	*data, int x, int y, int colour);
 int		is_wall(t_cub3d *data, int x, int y);
 
 /* KEY_HOOK */
