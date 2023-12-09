@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 18:54:20 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 19:36:24 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/09 22:35:59 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,6 @@ void	assign_current_texture(t_cub3d *data, t_ray *ray)
 		if (ray->east_west == EAST)
 			data->current_texture = data->texture->east;
 		else
-			data->current_texture = data->texture->west;	
+			data->current_texture = data->texture->west;
 	}
 }

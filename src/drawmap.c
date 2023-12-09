@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 14:25:27 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 19:19:22 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/09 22:34:39 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	draw_middle_grid(t_cub3d *data);
  *
  * @param data The main data structure for the application.
  */
-void    drawmap(t_cub3d	*data)
+void	drawmap(t_cub3d *data)
 {
 	draw_base(data);
 	draw_surrounding_grid(data);

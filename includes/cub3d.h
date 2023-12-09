@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 14:42:08 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 19:38:25 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/09 22:30:47 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,10 +203,10 @@ int		is_wall(t_cub3d *data, int x, int y);
 
 /* KEY_HOOK */
 int		key_hook(int keycode, t_cub3d *data);
-int		exit_hook(t_cub3d *data);
 
 /* EXIT */
 int		error_exit(t_cub3d *data);
+int		exit_hook(t_cub3d *data);
 
 /* UTLIS*/
 void	free_2d(char **array);
