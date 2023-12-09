@@ -6,6 +6,7 @@ This readme will be divided into two parts. The first part is about simple intro
 ### About
 Cub3D is a dynamic first-person view game that utilizes ray-casting techniques.This is a simple game project inspired by Wolfenstein 3D.
 
+---
 ### Run the program 
 ```
 ./cub3d maps/valid.cub
