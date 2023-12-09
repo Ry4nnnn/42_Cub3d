@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 14:42:08 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 19:03:55 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/09 19:38:25 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 
 # elif defined __APPLE__
 
-# define KEY_ESC 253
+# define KEY_ESC 53
 # define KEY_W 13
 # define KEY_A 0
 # define KEY_S 1
@@ -192,6 +192,8 @@ void	draw_texture(t_cub3d *data, int x);
 
 /* DRAWRAY */
 void	drawray(t_cub3d *data);
+
+/* DRAWRAY_UTILS */
 
 /* DRAW_UTLIS */
 void	half_window(t_cub3d *data, int colour1, int colour2);

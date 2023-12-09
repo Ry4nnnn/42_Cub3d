@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 15:07:43 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 19:14:18 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/09 19:32:27 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	map_resize(t_cub3d *data);
 int		check_map(t_cub3d *data);
 int		check_up_down_left_right(t_cub3d *data, int x, int y);
-void	assign_direction(t_cub3d *data, int x, int y);
+void	assign_player_direction(t_cub3d *data, int x, int y);
 
 /**
  * @brief Resize the map to ensure all rows have the same width.
@@ -80,7 +80,7 @@ int	check_map(t_cub3d *data)
 					return (1);
 			}
 			if (w == 2)
-				assign_direction(data, i, j);
+				assign_player_direction(data, i, j);
 		}
 	}
 	return (0);
@@ -120,7 +120,7 @@ int	check_up_down_left_right(t_cub3d *data, int i, int j)
  * @param y The y coordinate of the player.
  * @return 0 if successful, otherwise 1.
  */
-void	assign_direction(t_cub3d *data, int i, int j)
+void	assign_player_direction(t_cub3d *data, int i, int j)
 {
 	int	dir;
 
