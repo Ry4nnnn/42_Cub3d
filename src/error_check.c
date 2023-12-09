@@ -1,14 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_check.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/09 14:15:45 by tzi-qi            #+#    #+#             */
+/*   Updated: 2023/12/09 14:22:02 by tzi-qi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-int error_check(t_cub3d *data, int argc, char **argv);   
-int check_valid_filename(char *filename);
+int	error_check(t_cub3d *data, int argc, char **argv);
+int	check_valid_filename(char *filename);
 
 /**
- * @brief Checks command-line arguments, initializes program data, and performs parsing.
+ * @brief Checks command-line arguments, initializes program data, 
+ * and performs parsing.
  *
- * This function checks if the correct number of command-line arguments is provided,
- * initializes the main data structure, and performs parsing of the configuration file.
- * It also handles errors and provides usage instructions if needed.
+ * This function checks if the correct number of command-line arguments is 
+ * provided, initializes the main data structure, and performs parsing of the 
+ * configuration file. It also handles errors and provides usage instructions 
+ * if needed.
  *
  * @param data A pointer to the main data structure of the program.
  * @param argc The number of command-line arguments.
@@ -23,8 +37,8 @@ int	error_check(t_cub3d *data, int argc, char **argv)
 		ft_putstr_fd("Usage: ./program [map]\n", 2);
 		return (1);
 	}
-    if (check_valid_filename(argv[1]) == 1)
-		return(1);
+	if (check_valid_filename(argv[1]) == 1)
+		return (1);
 	if (parsing(data, argv[1]) == 1)
 		return (1);
 	return (0);

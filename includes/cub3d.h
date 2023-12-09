@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/09 14:42:08 by tzi-qi            #+#    #+#             */
+/*   Updated: 2023/12/09 14:44:56 by tzi-qi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -29,9 +41,9 @@
 
 typedef struct s_coord
 {
-	int x;
-	int y;
-} t_coord;
+	int	x;
+	int	y;
+}	t_coord;
 
 typedef struct s_image
 {
@@ -55,7 +67,7 @@ typedef struct s_img_data
 	int		height;
 }	t_img_data;
 
-typedef	struct s_ray
+typedef struct s_ray
 {
 	double	raydirx;
 	double	raydiry;
@@ -77,7 +89,7 @@ typedef	struct s_ray
 	int		side;
 }	t_ray;
 
-typedef	struct	s_player
+typedef struct s_player
 {
 	double	px;
 	double	py;
@@ -90,7 +102,7 @@ typedef	struct	s_player
 	int		news;
 }	t_player;
 
-typedef	struct s_texture
+typedef struct s_texture
 {
 	t_img_data	*north;
 	t_img_data	*south;
@@ -124,7 +136,7 @@ int		parsing(t_cub3d *data, char *filename);
 char	**open_file(char *filename);
 
 /* INIT */
-void    init_data(t_cub3d *data);
+void	init_data(t_cub3d *data);
 int		init_file_data(t_cub3d *data, char **array);
 int		init_textures(t_cub3d *data, char *str);
 int		init_fc_color(t_cub3d *data, char *str);
@@ -137,18 +149,15 @@ int		check_valid_map(t_cub3d *data);
 int		check_map(t_cub3d *data);
 
 /* DRAW_UTLIS */
-void    change_colour(t_cub3d *data, t_image *img);
-void    half_window(t_cub3d *data, int colour1, int colour2);
-void	drawLine(t_cub3d	*data, int x1, int y1, int x2, int y2, int colour);
-void	drawSquare(t_cub3d	*data, int x, int y, int colour);
+void	change_colour(t_cub3d *data, t_image *img);
+void	half_window(t_cub3d *data, int colour1, int colour2);
+void	drawsquare(t_cub3d	*data, int x, int y, int colour);
 
 /* DRAW */
-void	drawPlayer(t_cub3d  *data);
-void    drawMap(t_cub3d	*data);
-void    drawRay(t_cub3d *data);
-void	drawWall(t_cub3d *data);
+void	drawplayer(t_cub3d	*data);
+void	drawmap(t_cub3d	*data);
+void	drawray(t_cub3d *data);
 int		is_wall(t_cub3d *data, int x, int y);
-
 
 /* KEY_HOOK */
 int		key_hook(int keycode, t_cub3d *data);
@@ -158,7 +167,7 @@ int		exit_hook(t_cub3d *data);
 int		error_exit(t_cub3d *data);
 
 /* UTLIS*/
-void    free_2d(char **array);
+void	free_2d(char **array);
 int		rgb_to_hex(int r, int g, int b);
 
 /* MLX UTLIS*/

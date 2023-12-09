@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/09 15:20:11 by tzi-qi            #+#    #+#             */
+/*   Updated: 2023/12/09 15:20:46 by tzi-qi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int		parsing(t_cub3d *data, char *filename);
@@ -7,7 +19,8 @@ char	**open_file(char *filename);
  * @brief Parse the content of a configuration file.
  *
  * This function parses the content of a configuration file using the map_check
- * function. It checks the filename validity, opens the file, and performs the parsing.
+ * function. It checks the filename validity, opens the file, and performs 
+ * the parsing.
  *
  * @param data The main data structure for the application.
  * @param filename The name of the configuration file to be parsed.
@@ -18,13 +31,13 @@ int	parsing(t_cub3d *data, char *filename)
 	char	**array;
 
 	array = NULL;
-	array  = open_file(filename);
+	array = open_file(filename);
 	if (array == NULL)
 	{
 		ft_putstr_fd("Error: Can't open file\n", 2);
 		return (1);
 	}
-	if(init_file_data(data, array) == 1)
+	if (init_file_data(data, array) == 1)
 	{
 		free_2d(array);
 		return (1);
@@ -49,7 +62,7 @@ int	parsing(t_cub3d *data, char *filename)
  */
 char	**open_file(char *filename)
 {
-	int 	fd;
+	int		fd;
 	int		i;
 	char	buf[2000];
 	char	**array;

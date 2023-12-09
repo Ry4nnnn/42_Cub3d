@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_check.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/09 15:07:43 by tzi-qi            #+#    #+#             */
+/*   Updated: 2023/12/09 15:19:28 by tzi-qi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	map_resize(t_cub3d *data);
@@ -50,12 +62,14 @@ void	map_resize(t_cub3d *data)
  */
 int check_valid_map(t_cub3d *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 	int	flag;
+	int	w;
 
 	flag = 0;
-	if (ft_strchr(data->texture->map[0], '0') || ft_strchr(data->texture->map[data->texture->height - 1], '0'))
+	if (ft_strchr(data->texture->map[0], '0') \
+		|| ft_strchr(data->texture->map[data->texture->height - 1], '0'))
 	{
 		ft_putstr_fd("Error: Map not closed\n", 2);
 		return (1);
@@ -66,14 +80,13 @@ int check_valid_map(t_cub3d *data)
 		j = -1;
 		while (++j < data->texture->width)
 		{
-			if (data->texture->map[i][j] != '0' && data->texture->map[i][j] != '1' && data->texture->map[i][j] != ' '
-				&& data->texture->map[i][j] != 'N' && data->texture->map[i][j] != 'S' && data->texture->map[i][j] != '\r'
-				&& data->texture->map[i][j] != 'E' && data->texture->map[i][j] != 'W')
+			w = is_wall(data, j, i);
+			if (w == 1)
 			{
 				ft_putstr_fd("Error: Invalid character in map\n", 2);
 				return (1);
 			}
-			if (data->texture->map[i][j] == 'N' || data->texture->map[i][j] == 'S' || data->texture->map[i][j] == 'E' || data->texture->map[i][j] == 'W')
+			if (w == 2)
 				flag++;
 		}
 	}
@@ -100,6 +113,7 @@ int	check_map(t_cub3d *data)
 	int		j;
 	int		dir;
 	char	**map;
+	int		w;
 
 	i = -1;
 	map = data->texture->map;
@@ -108,18 +122,17 @@ int	check_map(t_cub3d *data)
 		j = -1;
 		while (++j < data->texture->width)
 		{
-			if (data->texture->map[i][j] == '0'|| data->texture->map[i][j] == 'N' \
-			|| data->texture->map[i][j] == 'S' || data->texture->map[i][j] == 'E' \
-			|| data->texture->map[i][j] == 'W')
+			w = is_wall(data, j, i);
+			if (w == 2 || w == 3)
 			{
-				if (map[i + 1][j] == ' ' || map[i - 1][j] == ' ' || map[i][j + 1] == ' ' || map[i][j - 1] == ' ')
+				if (map[i + 1][j] == ' ' || map[i - 1][j] == ' ' \
+					|| map[i][j + 1] == ' ' || map[i][j - 1] == ' ')
 				{
 					ft_putstr_fd("Error: Invalid Map\n", 2);
 					return (1);
 				}
 			}
-			if (data->texture->map[i][j] == 'N' || data->texture->map[i][j] == 'S'
-			|| data->texture->map[i][j] == 'E' || data->texture->map[i][j] == 'W')
+			if (w == 2)
 			{
 				if (data->texture->map[i][j] == 'N')
 					dir = NORTH;

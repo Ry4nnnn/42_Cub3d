@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/09 15:21:04 by tzi-qi            #+#    #+#             */
+/*   Updated: 2023/12/09 15:22:16 by tzi-qi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-void    free_2d(char **array);
-int     rgb_to_hex(int r, int g, int b);
+void	free_2d(char **array);
+int		rgb_to_hex(int r, int g, int b);
 
 /**
  * @brief Free a dynamically allocated 2D array of strings.
@@ -11,17 +23,17 @@ int     rgb_to_hex(int r, int g, int b);
  *
  * @param array The 2D array to be freed.
  */
-void    free_2d(char **array)
+void	free_2d(char **array)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (array[i] != NULL)
-    {
-        free(array[i]);
-        i++;
-    }
-    free(array);
+	i = 0;
+	while (array[i] != NULL)
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
 }
 
 /**

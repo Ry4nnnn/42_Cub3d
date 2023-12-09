@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/09 15:00:06 by tzi-qi            #+#    #+#             */
+/*   Updated: 2023/12/09 15:05:19 by tzi-qi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	init_data(t_cub3d *data);
@@ -6,6 +18,7 @@ int		init_textures(t_cub3d *data, char *str);
 int		init_fc_color(t_cub3d *data, char *str);
 int		init_map_layout(t_cub3d *data, char **array, int i);
 void	init_player_data(t_cub3d *data, int x, int y, int dir);
+
 /**
  * @brief Initialize the main data structure.
  *
@@ -14,7 +27,7 @@ void	init_player_data(t_cub3d *data, int x, int y, int dir);
  *
  * @param data The main data structure for the application.
  */
-void    init_data(t_cub3d *data)
+void	init_data(t_cub3d *data)
 {
 	data->mlx = mlx_init();
 	data->texture = ft_calloc(1, sizeof(t_texture));
@@ -24,10 +37,10 @@ void    init_data(t_cub3d *data)
 	data->texture->east = ft_calloc(1, sizeof(t_img_data));
 	data->texture->door = ft_calloc(1, sizeof(t_img_data));
 	data->texture->map = NULL;
-    data->player = ft_calloc(1, sizeof(t_player));
-    data->player->t = 0;
-    data->player->old_t = 0;
-    data->ray = ft_calloc(1, sizeof(t_ray));
+	data->player = ft_calloc(1, sizeof(t_player));
+	data->player->t = 0;
+	data->player->old_t = 0;
+	data->ray = ft_calloc(1, sizeof(t_ray));
 	data->ray->north_south = -1;
 	data->ray->east_west = -1;
 }
@@ -45,7 +58,7 @@ void    init_data(t_cub3d *data)
  */
 int	init_file_data(t_cub3d *data, char **array)
 {
-	int i;
+	int	i;
 	int	result;
 
 	i = 0;
@@ -57,7 +70,7 @@ int	init_file_data(t_cub3d *data, char **array)
 			if (result == 1)
 			{
 				ft_putstr_fd("Error: Invalid texture\n", 2);
-				break;
+				break ;
 			}
 		}
 		else if (i >= 5 && i <= 6)
@@ -66,13 +79,14 @@ int	init_file_data(t_cub3d *data, char **array)
 			if (result == 1)
 			{
 				ft_putstr_fd("Error: Invalid colour\n", 2);
-				break;
+				break ;
 			}
 		}
-		else if (ft_strncmp(array[i], " ", 1) == 0 || ft_strncmp(array[i], "1", 1) == 0)
+		else if (ft_strncmp(array[i], " ", 1) == 0 \
+				|| ft_strncmp(array[i], "1", 1) == 0)
 		{
-				result = init_map_layout(data, array, i);
-				break;
+			result = init_map_layout(data, array, i);
+			break ;
 		}
 		else
 			ft_putstr_fd("Error: Invalid file format\n", 2);
@@ -105,62 +119,82 @@ int	init_textures(t_cub3d *data, char *str)
 	path = ft_strjoin("./images/", ft_strchr(str, '.') + 2);
 	if (!ft_strncmp(str, "NO ", 3))
 	{
-		data->texture->north->img_ptr = mlx_xpm_file_to_image(data->mlx, path, &w, &h);
+		data->texture->north->img_ptr = \
+		mlx_xpm_file_to_image(data->mlx, path, &w, &h);
 		if (data->texture->north->img_ptr == NULL)
 		{
 			ft_putstr_fd("Error: Invalid texture\n", 2);
 			free (path);
 			return (1);
 		}
-		data->texture->north->addr = mlx_get_data_addr(data->texture->north->img_ptr, &data->texture->north->bpp, &data->texture->north->line_length, &data->texture->north->endian);
+		data->texture->north->addr = \
+		mlx_get_data_addr(data->texture->north->img_ptr, \
+		&data->texture->north->bpp, &data->texture->north->line_length, \
+		&data->texture->north->endian);
 		data->texture->north->width = w;
 		data->texture->north->height = h;
 	}
 	else if (!ft_strncmp(str, "SO ", 3))
 	{
-		data->texture->south->img_ptr = mlx_xpm_file_to_image(data->mlx, path, &w, &h);
+		data->texture->south->img_ptr = \
+			mlx_xpm_file_to_image(data->mlx, path, &w, &h);
 		if (data->texture->south->img_ptr == NULL)
 		{
 			free (path);
 			return (1);
 		}
-		data->texture->south->addr = mlx_get_data_addr(data->texture->south->img_ptr, &data->texture->south->bpp, &data->texture->south->line_length, &data->texture->south->endian);
+		data->texture->south->addr = \
+		mlx_get_data_addr(data->texture->south->img_ptr, \
+		&data->texture->south->bpp, &data->texture->south->line_length, \
+		&data->texture->south->endian);
 		data->texture->south->width = w;
 		data->texture->south->height = h;
 	}
 	else if (!ft_strncmp(str, "WE ", 3))
 	{
-		data->texture->west->img_ptr = mlx_xpm_file_to_image(data->mlx, path, &w, &h);
+		data->texture->west->img_ptr = \
+			mlx_xpm_file_to_image(data->mlx, path, &w, &h);
 		if (data->texture->west->img_ptr == NULL)
 		{
 			free (path);
 			return (1);
 		}
-		data->texture->west->addr = mlx_get_data_addr(data->texture->west->img_ptr, &data->texture->west->bpp, &data->texture->west->line_length, &data->texture->west->endian);
+		data->texture->west->addr = \
+		mlx_get_data_addr(data->texture->west->img_ptr, \
+		&data->texture->west->bpp, &data->texture->west->line_length, \
+		&data->texture->west->endian);
 		data->texture->west->width = w;
 		data->texture->west->height = h;
 	}
 	else if (!ft_strncmp(str, "EA ", 3))
 	{
-		data->texture->east->img_ptr = mlx_xpm_file_to_image(data->mlx, path, &w, &h);
+		data->texture->east->img_ptr = \
+		mlx_xpm_file_to_image(data->mlx, path, &w, &h);
 		if (data->texture->east->img_ptr == NULL)
 		{
 			free (path);
 			return (1);
 		}
-		data->texture->east->addr = mlx_get_data_addr(data->texture->east->img_ptr, &data->texture->east->bpp, &data->texture->east->line_length, &data->texture->east->endian);
+		data->texture->east->addr = \
+		mlx_get_data_addr(data->texture->east->img_ptr, \
+		&data->texture->east->bpp, &data->texture->east->line_length, \
+		&data->texture->east->endian);
 		data->texture->east->width = w;
 		data->texture->east->height = h;
 	}
 	else if (!ft_strncmp(str, "DO ", 3))
 	{
-		data->texture->door->img_ptr = mlx_xpm_file_to_image(data->mlx, path, &w, &h);
+		data->texture->door->img_ptr = \
+		mlx_xpm_file_to_image(data->mlx, path, &w, &h);
 		if (data->texture->door->img_ptr == NULL)
 		{
 			free (path);
 			return (1);
 		}
-		data->texture->door->addr = mlx_get_data_addr(data->texture->door->img_ptr, &data->texture->door->bpp, &data->texture->door->line_length, &data->texture->door->endian);
+		data->texture->door->addr = \
+		mlx_get_data_addr(data->texture->door->img_ptr, \
+		&data->texture->door->bpp, &data->texture->door->line_length,\
+		&data->texture->door->endian);
 		data->texture->door->width = w;
 		data->texture->door->height = h;
 	}
@@ -173,8 +207,6 @@ int	init_textures(t_cub3d *data, char *str)
 	return (0);
 }
 
-
-
 /**
  * @brief Initialize floor and ceiling colors based on a given string.
  *
@@ -186,11 +218,11 @@ int	init_textures(t_cub3d *data, char *str)
  * @param str The string representing a line from the configuration file.
  * @return 1 if an error occurs, 0 otherwise.
  */
-int init_fc_color(t_cub3d *data, char *str)
+int	init_fc_color(t_cub3d *data, char *str)
 {
-	int i;
-	char **array;
-	char **num;
+	int		i;
+	char	**array;
+	char	**num;
 
 	i = -1;
 	array = ft_split(str, ' ');
@@ -207,7 +239,8 @@ int init_fc_color(t_cub3d *data, char *str)
 				return (1);
 			}
 		}
-		data->texture->floor = rgb_to_hex(ft_atoi(num[0]), ft_atoi(num[1]), ft_atoi(num[2]));
+		data->texture->floor = \
+		rgb_to_hex(ft_atoi(num[0]), ft_atoi(num[1]), ft_atoi(num[2]));
 	}
 	else if (!ft_strncmp(str, "C ", 2))
 	{
@@ -221,7 +254,8 @@ int init_fc_color(t_cub3d *data, char *str)
 				return (1);
 			}
 		}
-		data->texture->ceiling = rgb_to_hex(ft_atoi(num[0]), ft_atoi(num[1]), ft_atoi(num[2]));
+		data->texture->ceiling = \
+		rgb_to_hex(ft_atoi(num[0]), ft_atoi(num[1]), ft_atoi(num[2]));
 	}
 	else
 	{
@@ -241,33 +275,34 @@ int init_fc_color(t_cub3d *data, char *str)
  * representing lines from the configuration file.
  *
  * @param data The main data structure for the application.
- * @param array An array of strings representing lines from the configuration file.
+ * @param array An array of strings representing lines from the 
+ * 				configuration file.
  * @param i Index to start processing in the array.
  * @return 0 if successful, otherwise 1.
  */
 int	init_map_layout(t_cub3d *data, char **array, int i)
 {
-		int	j;
-		int	width;
+	int	j;
+	int	width;
 
 		j = i;
-		while (array[j])
-			j++;
-		data->texture->height = j - i;
-		width = ft_strlen(array[i]);
-		data->texture->map = ft_calloc(j - i + 1, sizeof(char *));
-		j = -1;
-		while (array[i])
-			data->texture->map[++j] = ft_strdup(array[i++]);
-		data->texture->map[++j] = NULL;
-		j = -1;
-		while (data->texture->map[++j])
-		{
-			if (width < ft_strlen(data->texture->map[j]))
-				width = ft_strlen(data->texture->map[j]);
-		}
-		data->texture->width = width;
-		return (0);
+	while (array[j])
+		j++;
+	data->texture->height = j - i;
+	width = ft_strlen(array[i]);
+	data->texture->map = ft_calloc(j - i + 1, sizeof(char *));
+	j = -1;
+	while (array[i])
+		data->texture->map[++j] = ft_strdup(array[i++]);
+	data->texture->map[++j] = NULL;
+	j = -1;
+	while (data->texture->map[++j])
+	{
+		if (width < ft_strlen(data->texture->map[j]))
+			width = ft_strlen(data->texture->map[j]);
+	}
+	data->texture->width = width;
+	return (0);
 }
 
 void	init_player_data(t_cub3d *data, int x, int y, int dir)
