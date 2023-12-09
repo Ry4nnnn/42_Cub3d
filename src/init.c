@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 15:00:06 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 17:07:33 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/09 17:29:09 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	init_data(t_cub3d *data);
 int		init_file_data(t_cub3d *data, char **array);
-int		init_textures(t_cub3d *data, char *str);
-int		init_fc_color(t_cub3d *data, char *str);
 int		init_map_layout(t_cub3d *data, char **array, int i);
 void	init_player_data(t_cub3d *data, int x, int y, int dir);
 

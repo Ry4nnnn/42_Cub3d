@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:06:23 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 17:15:18 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/09 17:27:59 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,30 +38,16 @@ int	init_textures(t_cub3d *data, char *str)
 		return (1);
 	path = ft_strjoin("./images/", ft_strchr(str, '.') + 2);
 	if (!ft_strncmp(str, "NO ", 3))
-	{
-		if (init_north(data, path))
-			return (1);
-	}
+		return (init_north(data, path));
 	else if (!ft_strncmp(str, "SO ", 3))
-	{
-		if (init_south(data, path))
-			return (1);
-	}
+		return (init_south(data, path));
+
 	else if (!ft_strncmp(str, "WE ", 3))
-	{
-		if (init_west(data, path))
-			return (1);
-	}
+		return (init_west(data, path));
 	else if (!ft_strncmp(str, "EA ", 3))
-	{
-		if (init_east(data, path))
-			return (1);
-	}
+		return (init_east(data, path));
 	else if (!ft_strncmp(str, "DO ", 3))
-	{
-		if (init_door(data, path))
-			return (1);
-	}
+		return (init_door(data, path));
 	else
 	{
 		free (path);
@@ -161,10 +147,10 @@ int	init_east(t_cub3d *data, char *path)
 
 int	init_door(t_cub3d *data, char *path)
 {
-	int w;
-	int h;
+	int	w;
+	int	h;
 
-		data->texture->door->img_ptr = \
+	data->texture->door->img_ptr = \
 	mlx_xpm_file_to_image(data->mlx, path, &w, &h);
 	if (data->texture->door->img_ptr == NULL)
 	{
