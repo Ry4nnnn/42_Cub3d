@@ -29,11 +29,9 @@ int	init_ceiling(t_cub3d *data, char **array, char **num);
  */
 int	init_fc_color(t_cub3d *data, char *str)
 {
-	int		i;
 	char	**array;
 	char	**num;
 
-	i = -1;
 	array = ft_split(str, ' ');
 	num = ft_split(array[1], ',');
 	if (!ft_strncmp(str, "F ", 2))
