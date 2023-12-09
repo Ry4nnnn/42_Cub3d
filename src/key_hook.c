@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "keycodes.h"
+// #include "keycodes.h"
 
 int	exit_hook(t_cub3d *data);
 int	key_hook(int keycode, t_cub3d *data);
@@ -85,7 +85,7 @@ int	key_hook(int keycode, t_cub3d *data)
 			(int)(data->player->py + data->player->planey * move_speed)) != 0)
 			data->player->py += data->player->planey * move_speed;
 	}
-	if (keycode == KEY_A)
+	if (keycode == KEY_D)
 	{
 		if (is_wall(data, (int)(data->player->px - \
 			data->player->planex * move_speed), (int)data->player->py) != 0)
