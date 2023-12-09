@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 15:00:06 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 15:05:19 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/09 16:57:49 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,7 @@ int	init_textures(t_cub3d *data, char *str)
 		}
 		data->texture->door->addr = \
 		mlx_get_data_addr(data->texture->door->img_ptr, \
-		&data->texture->door->bpp, &data->texture->door->line_length,\
+		&data->texture->door->bpp, &data->texture->door->line_length, \
 		&data->texture->door->endian);
 		data->texture->door->width = w;
 		data->texture->door->height = h;
@@ -207,66 +207,7 @@ int	init_textures(t_cub3d *data, char *str)
 	return (0);
 }
 
-/**
- * @brief Initialize floor and ceiling colors based on a given string.
- *
- * This function initializes floor and ceiling colors based on a string
- * representing a line from the configuration file. It handles the 'F' and 'C'
- * options, parsing RGB values and converting them to hexadecimal colors.
- *
- * @param data The main data structure for the application.
- * @param str The string representing a line from the configuration file.
- * @return 1 if an error occurs, 0 otherwise.
- */
-int	init_fc_color(t_cub3d *data, char *str)
-{
-	int		i;
-	char	**array;
-	char	**num;
 
-	i = -1;
-	array = ft_split(str, ' ');
-	num = ft_split(array[1], ',');
-	if (!ft_strncmp(str, "F ", 2))
-	{
-		i = -1;
-		while (num[++i])
-		{
-			if (ft_atoi(num[i]) < 0 || ft_atoi(num[i]) > 255)
-			{
-				free_2d(array);
-				free_2d(num);
-				return (1);
-			}
-		}
-		data->texture->floor = \
-		rgb_to_hex(ft_atoi(num[0]), ft_atoi(num[1]), ft_atoi(num[2]));
-	}
-	else if (!ft_strncmp(str, "C ", 2))
-	{
-		i = -1;
-		while (num[++i])
-		{
-			if (ft_atoi(num[i]) < 0 || ft_atoi(num[i]) > 255)
-			{
-				free_2d(array);
-				free_2d(num);
-				return (1);
-			}
-		}
-		data->texture->ceiling = \
-		rgb_to_hex(ft_atoi(num[0]), ft_atoi(num[1]), ft_atoi(num[2]));
-	}
-	else
-	{
-		free_2d(array);
-		free_2d(num);
-		return (1);
-	}
-	free_2d(array);
-	free_2d(num);
-	return (0);
-}
 
 /**
  * @brief Initialize map layout based on a given array of strings.
