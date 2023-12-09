@@ -284,17 +284,17 @@ void	init_player_data(t_cub3d *data, int x, int y, int dir)
 	(void)dir;
 	if (dir == NORTH)
 	{
-		data->player->dirx = -1;
-		data->player->diry = 0;
-		data->player->planex = 0;
-		data->player->planey = 0.45;
+		data->player->dirx = 0;
+		data->player->diry = -1;
+		data->player->planex = -0.45;
+		data->player->planey = 0;
 	}
 	else if (dir == SOUTH)
 	{
-		data->player->dirx = 1;
-		data->player->diry = 0;
-		data->player->planex = 0;
-		data->player->planey = -0.45;
+		data->player->dirx = 0;
+		data->player->diry = 1;
+		data->player->planex = 0.45;
+		data->player->planey = 0;
 	}
 	else if (dir == EAST)
 	{
@@ -309,5 +309,10 @@ void	init_player_data(t_cub3d *data, int x, int y, int dir)
 		data->player->diry = 0;
 		data->player->planex = 0;
 		data->player->planey = 0.45;
+	}
+	else
+	{
+		ft_putstr_fd("Error: Invalid player direction\n", 2);
+		exit(1);
 	}
 }
