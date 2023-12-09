@@ -130,6 +130,8 @@ int	is_wall(t_cub3d *data, int x, int y)
 		return (2);
 	else if (data->texture->map[y][x] == '0')
 		return (3);
+	else if (data->texture->map[y][x] == ' ')
+		return (4);
 	else
 		return (1);
 }
