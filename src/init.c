@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 15:00:06 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 17:36:39 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/09 17:42:12 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	init_data(t_cub3d *data);
 int		init_file_data(t_cub3d *data, char **array);
 int		init_map_layout(t_cub3d *data, char **array, int i);
-
 
 /**
  * @brief Initialize the main data structure.

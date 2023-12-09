@@ -6,15 +6,18 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 15:05:36 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 16:27:01 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/09 17:51:39 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 // #include "keycodes.h"
 
-int	exit_hook(t_cub3d *data);
-int	key_hook(int keycode, t_cub3d *data);
+int		exit_hook(t_cub3d *data);
+int		key_hook(int keycode, t_cub3d *data);
+void	key_hook_front_back(int keycode, t_cub3d *data);
+void	key_hook_left_right(int keycode, t_cub3d *data);
+void	key_hook_rotation(int keycode, t_cub3d *data);
 
 /**
  * @brief Clean-up and exit the program.
@@ -49,15 +52,19 @@ int	exit_hook(t_cub3d *data)
  */
 int	key_hook(int keycode, t_cub3d *data)
 {
-	double	old_dirx;
-	double	old_planex;
-	double	angle;
-	double	move_speed;
-
-	angle = 5 / 180.0 * PI;
-	move_speed = 0.1;
 	if (keycode == KEY_ESC)
 		exit_hook(data);
+	key_hook_front_back(keycode, data);
+	key_hook_left_right(keycode, data);
+	key_hook_rotation(keycode, data);
+	return (0);
+}
+
+void	key_hook_front_back(int keycode, t_cub3d *data)
+{
+	double	move_speed;
+
+	move_speed = 0.1;
 	if (keycode == KEY_W)
 	{
 		if (is_wall(data, (int)(data->player->px + \
@@ -75,7 +82,14 @@ int	key_hook(int keycode, t_cub3d *data)
 		if (is_wall(data, (int)data->player->px, \
 			(int)(data->player->py - data->player->diry * move_speed)) != 0)
 			data->player->py -= data->player->diry * move_speed;
-	}	
+	}
+}
+
+void	key_hook_left_right(int keycode, t_cub3d *data)
+{
+	double	move_speed;
+
+	move_speed = 0.1;
 	if (keycode == KEY_A)
 	{
 		if (is_wall(data, (int)(data->player->px + \
@@ -94,6 +108,15 @@ int	key_hook(int keycode, t_cub3d *data)
 			(int)(data->player->py - data->player->planey * move_speed)) != 0)
 			data->player->py -= data->player->planey * move_speed;
 	}
+}
+
+void	key_hook_rotation(int keycode, t_cub3d *data)
+{
+	double	old_dirx;
+	double	old_planex;
+	double	angle;
+
+	angle = 5 / 180.0 * PI;
 	if (keycode == KEY_RIGHT)
 	{
 		old_dirx = data->player->dirx;
@@ -116,9 +139,8 @@ int	key_hook(int keycode, t_cub3d *data)
 							+ data->player->diry * cos(-angle);
 		old_planex = data->player->planex;
 		data->player->planex = data->player->planex * cos(-angle) \
-							- data->player->planey * sin(-angle);
+								- data->player->planey * sin(-angle);
 		data->player->planey = old_planex * sin(-angle) \
-								+ data->player->planey * cos(-angle);
+							+ data->player->planey * cos(-angle);
 	}
-	return (0);
 }
