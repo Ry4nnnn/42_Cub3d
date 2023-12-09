@@ -23,11 +23,8 @@ void    init_data(t_cub3d *data)
 	data->texture->west = ft_calloc(1, sizeof(t_img_data));
 	data->texture->east = ft_calloc(1, sizeof(t_img_data));
 	data->texture->door = ft_calloc(1, sizeof(t_img_data));
+	data->texture->map = NULL;
     data->player = ft_calloc(1, sizeof(t_player));
-    data->player->dirx = -1;
-    data->player->diry =  0;
-    data->player->planex = 0;
-    data->player->planey = 0.45;
     data->player->t = 0;
     data->player->old_t = 0;
     data->ray = ft_calloc(1, sizeof(t_ray));

@@ -17,6 +17,7 @@ int check_valid_filename(char *filename);
  */
 int	error_check(t_cub3d *data, int argc, char **argv)
 {
+	init_data(data);
 	if (argc != 2)
 	{
 		ft_putstr_fd("Usage: ./program [map]\n", 2);

@@ -24,7 +24,6 @@ int	parsing(t_cub3d *data, char *filename)
 		ft_putstr_fd("Error: Can't open file\n", 2);
 		return (1);
 	}
-	init_data(data);
 	if(init_file_data(data, array) == 1)
 	{
 		free_2d(array);

@@ -12,7 +12,7 @@ int	error_exit(t_cub3d *data)
 	free(data->texture);
 	free(data->player);
 	free(data->ray);
-	if (data->texture->map)
+	if (data->texture->map != NULL)
 		free_2d(data->texture->map);
 	free(data);
 	exit(1);

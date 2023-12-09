@@ -1,8 +1,8 @@
 NO ./as.xpm
-SO ./minecraft_leaf.xpm
-WE ./miao_miao.xpm
-EA ./Malaysia_flag.xpm
-DO ./minecraft_wood3.xpm
+SO ./minecraft_resource_pack_red.xpm
+WE ./minecraft_resource_pack_diamondgreen.xpm
+EA ./minecraft_resource_pack_yellow.xpm
+DO ./minecraft_resource_pack_red.xpm
 
 C 165,200,230
 F 219,240,189
