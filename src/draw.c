@@ -41,11 +41,12 @@ void    drawPlayer(t_cub3d	*data)
 	data->player->py /= 22;
 }
 
+
 /**
  * @brief Draw the map on the screen.
  *
- * This function draws a grid representing the map, with different colors for walls,
- * open spaces, and the player's position.
+ * This function draws the map on the screen. It consists of a grid
+ * representing the walls and other elements in different colors.
  *
  * @param data The main data structure for the application.
  */
@@ -92,14 +93,16 @@ void    drawMap(t_cub3d	*data)
 }
 
 /**
- * @brief Check if a position in the map is a wall.
+ * @brief Check if a given position is a wall or other element.
  *
- * This function checks if the specified position (x, y) in the map is a wall.
+ * This function checks if a given position in the map is a wall or another
+ * type of element. It returns different values based on the content of the
+ * map at the specified position.
  *
  * @param data The main data structure for the application.
  * @param x The x-coordinate of the position.
  * @param y The y-coordinate of the position.
- * @return 0 if the position is not a wall, 1 otherwise.
+ * @return 0 if the position is an open space, 1 if out of bounds, 2 if the position is a wall or other element, 3 for other cases.
  */
 int	is_wall(t_cub3d *data, int x, int y)
 {

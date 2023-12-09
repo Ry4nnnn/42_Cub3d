@@ -111,6 +111,7 @@ int	init_textures(t_cub3d *data, char *str)
 		data->texture->north->img_ptr = mlx_xpm_file_to_image(data->mlx, path, &w, &h);
 		if (data->texture->north->img_ptr == NULL)
 		{
+			ft_putstr_fd("Error: Invalid texture\n", 2);
 			free (path);
 			return (1);
 		}
