@@ -6,15 +6,40 @@ This readme will be divided into two parts. The first part is about simple intro
 ### About
 Cub3D is a dynamic first-person view game that utilizes ray-casting techniques.This is a simple game project inspired by Wolfenstein 3D.
 
+### Run the program 
+```
+./cub3d maps/valid.cub
+```
+The map that parse into the program must end with  `.cub`
+
+---
+### Map file requirements
+The map that parse into the program must end with  `.cub`
+
+The `NO` is followed by the image use in north walls. This same goes with `SO`(South), `WE`(West), `EA`(East), and `DO`(Door).
+
+`F` is followed by the RBG value for the **floor**. `C` is meant for **ceiling**.
+
+The map can only be composed of these 6 characters:
+| charachers   |                                             |
+|:------------:|:--------------------------------------------|
+| `0`          | an empty space                              |
+| `1`          | a wall                                      |
+| `N`          | the player's starting position facing north |
+| `E`          | the player's starting position facing east  |
+| `W`          | the player's starting position facing west  |
+| `S`          | the player's starting position facing south |
+The map must be closed by walls.
+---
 ### Controls
 | characters   |                      |
 |:------------:|:---------------------|
-| 'W'          | Move forward         |
-| 'S'          | Move backward        |
-| 'A'          | Move left            |
-| 'D'          | Move Right           |
-| 'left arrow' | Rotate left          |
-| 'right aarow'| Rotate right         |
+| `W`          | Move forward         |
+| `S`          | Move backward        |
+| `A`          | Move left            |
+| `D`          | Move Right           |
+| `left arrow` | Rotate left          |
+| `right aarow`| Rotate right         |
 
 ---
 ### 
