@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 15:00:06 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 17:29:09 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/09 17:36:39 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	init_data(t_cub3d *data);
 int		init_file_data(t_cub3d *data, char **array);
 int		init_map_layout(t_cub3d *data, char **array, int i);
-void	init_player_data(t_cub3d *data, int x, int y, int dir);
+
 
 /**
  * @brief Initialize the main data structure.
@@ -130,39 +130,4 @@ int	init_map_layout(t_cub3d *data, char **array, int i)
 	}
 	data->texture->width = width;
 	return (0);
-}
-
-void	init_player_data(t_cub3d *data, int x, int y, int dir)
-{
-	data->player->px = x + 0.2;
-	data->player->py = y + 0.2;
-	(void)dir;
-	if (dir == NORTH)
-	{
-		data->player->dirx = 0;
-		data->player->diry = -1;
-		data->player->planex = -0.45;
-		data->player->planey = 0;
-	}
-	else if (dir == SOUTH)
-	{
-		data->player->dirx = 0;
-		data->player->diry = 1;
-		data->player->planex = 0.45;
-		data->player->planey = 0;
-	}
-	else if (dir == EAST)
-	{
-		data->player->dirx = 1;
-		data->player->diry = 0;
-		data->player->planex = 0;
-		data->player->planey = -0.45;
-	}
-	else if (dir == WEST)
-	{
-		data->player->dirx = -1;
-		data->player->diry = 0;
-		data->player->planex = 0;
-		data->player->planey = 0.45;
-	}
 }

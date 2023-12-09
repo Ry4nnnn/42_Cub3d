@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 14:42:08 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 16:26:28 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/09 17:36:11 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,9 +156,22 @@ char	**open_file(char *filename);
 /* INIT */
 void	init_data(t_cub3d *data);
 int		init_file_data(t_cub3d *data, char **array);
-int		init_textures(t_cub3d *data, char *str);
-int		init_fc_color(t_cub3d *data, char *str);
 int		init_map_layout(t_cub3d *data, char **array, int i);
+
+/* INIT_FLOOR_TEXTURE */
+int		init_fc_color(t_cub3d *data, char *str);
+
+/* INIT_TEXTURES */
+int		init_textures(t_cub3d *data, char *str);
+
+/* INIT_TEXTURES_UTILS */
+int		init_north(t_cub3d *data, char *path);
+int		init_south(t_cub3d *data, char *path);
+int		init_west(t_cub3d *data, char *path);
+int		init_east(t_cub3d *data, char *path);
+int		init_door(t_cub3d *data, char *path);
+
+/* INIT_PLAYER_DATA */
 void	init_player_data(t_cub3d *data, int x, int y, int dir);
 
 /* MAP_CHECK */
