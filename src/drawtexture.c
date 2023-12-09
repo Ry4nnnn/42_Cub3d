@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 18:55:28 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 19:00:54 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/09 23:49:04 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,14 @@ void	draw_texture(t_cub3d *data, int x)
 	}
 }
 
+/**
+ * @brief Calculate the position of the wall hit for texture mapping.
+ *
+ * This function calculates the position of the wall hit for texture mapping.
+ *
+ * @param data The main data structure for the application.
+ * @return The calculated wall hit position.
+ */
 static double	calculate_wall_hit(t_cub3d *data)
 {
 	double	wall_hit;

@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:31:05 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 17:31:55 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/09 23:57:45 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,15 @@ int	init_west(t_cub3d *data, char *path);
 int	init_east(t_cub3d *data, char *path);
 int	init_door(t_cub3d *data, char *path);
 
+/**
+ * @brief Initialize the north texture based on the provided image file path.
+ *
+ * This function loads the north texture image and sets up the necessary data.
+ *
+ * @param data The main data structure for the application.
+ * @param path The file path to the north texture image.
+ * @return 0 on success, 1 on failure.
+ */
 int	init_north(t_cub3d *data, char *path)
 {
 	int	w;
@@ -41,6 +50,15 @@ int	init_north(t_cub3d *data, char *path)
 	return (0);
 }
 
+/**
+ * @brief Initialize the south texture based on the provided image file path.
+ *
+ * This function loads the south texture image and sets up the necessary data.
+ *
+ * @param data The main data structure for the application.
+ * @param path The file path to the south texture image.
+ * @return 0 on success, 1 on failure.
+ */
 int	init_south(t_cub3d *data, char *path)
 {
 	int	w;
@@ -63,6 +81,15 @@ int	init_south(t_cub3d *data, char *path)
 	return (0);
 }
 
+/**
+ * @brief Initialize the west texture based on the provided image file path.
+ *
+ * This function loads the west texture image and sets up the necessary data.
+ *
+ * @param data The main data structure for the application.
+ * @param path The file path to the west texture image.
+ * @return 0 on success, 1 on failure.
+ */
 int	init_west(t_cub3d *data, char *path)
 {
 	int	w;
@@ -84,6 +111,16 @@ int	init_west(t_cub3d *data, char *path)
 	free (path);
 	return (0);
 }
+
+/**
+ * @brief Initialize the east texture based on the provided image file path.
+ *
+ * This function loads the east texture image and sets up the necessary data.
+ *
+ * @param data The main data structure for the application.
+ * @param path The file path to the east texture image.
+ * @return 0 on success, 1 on failure.
+ */
 
 int	init_east(t_cub3d *data, char *path)
 {
@@ -107,6 +144,15 @@ int	init_east(t_cub3d *data, char *path)
 	return (0);
 }
 
+/**
+ * @brief Initialize the door texture based on the provided image file path.
+ *
+ * This function loads the door texture image and sets up the necessary data.
+ *
+ * @param data The main data structure for the application.
+ * @param path The file path to the door texture image.
+ * @return 0 on success, 1 on failure.
+ */
 int	init_door(t_cub3d *data, char *path)
 {
 	int	w;

@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 14:42:08 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 22:30:47 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/09 23:32:51 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <unistd.h>
 # include <math.h>
 # include <limits.h>
+# include "keycodes.h"
 
 # define SIZE_X 900
 # define SIZE_Y 900
@@ -36,28 +37,6 @@
 # define SOUTH 1
 # define EAST 2
 # define WEST 3
-
-# ifdef __linux__
-
-# define KEY_ESC 65307
-# define KEY_W 119
-# define KEY_A 97
-# define KEY_S 115
-# define KEY_D 100
-# define KEY_LEFT 65361
-# define KEY_RIGHT 65363
-
-# elif defined __APPLE__
-
-# define KEY_ESC 53
-# define KEY_W 13
-# define KEY_A 0
-# define KEY_S 1
-# define KEY_D 2
-# define KEY_LEFT 123
-# define KEY_RIGHT 124
-
-# endif
 
 typedef struct s_coord
 {
@@ -158,8 +137,9 @@ char	**open_file(char *filename);
 
 /* INIT */
 void	init_data(t_cub3d *data);
+
+/* INIT_FILE_DATA */
 int		init_file_data(t_cub3d *data, char **array);
-int		init_map_layout(t_cub3d *data, char **array, int i);
 
 /* INIT_FLOOR_TEXTURE */
 int		init_fc_color(t_cub3d *data, char *str);
@@ -194,6 +174,10 @@ void	draw_texture(t_cub3d *data, int x);
 void	drawray(t_cub3d *data);
 
 /* DRAWRAY_UTILS */
+void	assign_x_y_offset(t_cub3d *data, t_ray *ray);
+void	assign_direction(t_ray *ray);
+void	assign_current_texture(t_cub3d *data, t_ray *ray);
+void	assign_wall_height(t_cub3d *data, t_ray *ray);
 
 /* DRAW_UTLIS */
 void	half_window(t_cub3d *data, int colour1, int colour2);

@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:54:22 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 18:12:09 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/09 23:41:44 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@ int	check_valid_chars(t_cub3d *data);
 int	check_valid_player(t_cub3d *data);
 
 /**
- * @brief Check if the map is valid.
+ * @brief Check the overall validity of the map.
  *
- * This function checks if the map is valid, ensuring that it contains
- * valid characters, is closed, and has only one player.
+ * This function checks various aspects of the map to ensure its validity.
+ * It includes checks for the first and last rows, first and last columns,
+ * valid characters, and the presence of a single player starting position.
  *
  * @param data The main data structure for the application.
- * @return 1 if an error occurs, 0 otherwise.
+ * @return 1 if the map is invalid, 0 if it is valid.
  */
 int	check_valid_map(t_cub3d *data)
 {
@@ -40,6 +41,15 @@ int	check_valid_map(t_cub3d *data)
 	return (0);
 }
 
+/**
+ * @brief Check if the first and last rows of the map are closed.
+ *
+ * This function checks if the first and last rows of the map contain '0'
+ * indicating an unclosed map boundary.
+ *
+ * @param data The main data structure for the application.
+ * @return 1 if the first or last rows are not closed, 0 otherwise.
+ */
 int	check_first_last_row(t_cub3d *data)
 {
 	if (ft_strchr(data->texture->map[0], '0') \
@@ -51,6 +61,15 @@ int	check_first_last_row(t_cub3d *data)
 	return (0);
 }
 
+/**
+ * @brief Check if the first and last columns of the map are closed.
+ *
+ * This function checks if the first and last columns of the map contain '0'
+ * indicating an unclosed map boundary.
+ *
+ * @param data The main data structure for the application.
+ * @return 1 if the columns are not closed, 0 otherwise.
+ */
 int	check_first_last_col(t_cub3d *data)
 {
 	int	i;
@@ -68,6 +87,15 @@ int	check_first_last_col(t_cub3d *data)
 	return (0);
 }
 
+/**
+ * @brief Check if the map contains valid characters.
+ *
+ * This function iterates through the map and checks if each character is valid.
+ * It also counts the number of player starting positions.
+ *
+ * @param data The main data structure for the application.
+ * @return 1 if there is an invalid character in the map, 0 otherwise.
+ */
 int	check_valid_chars(t_cub3d *data)
 {
 	int	i;
@@ -94,6 +122,15 @@ int	check_valid_chars(t_cub3d *data)
 	return (0);
 }
 
+/**
+ * @brief Check if there is a valid number of player starting positions.
+ *
+ * This function checks if there is exactly one player starting position 
+ * in the map.
+ *
+ * @param data The main data structure for the application.
+ * @return 1 if the number of players is not valid, 0 otherwise.
+ */
 int	check_valid_player(t_cub3d *data)
 {
 	if (data->texture->flag != 1)

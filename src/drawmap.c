@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 14:25:27 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 22:34:39 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/09 23:43:45 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	draw_surrounding_grid(t_cub3d *data);
 void	draw_middle_grid(t_cub3d *data);
 
 /**
- * @brief Draw the map on the screen.
+ * @brief Draw the entire map.
  *
- * This function draws the map on the screen. It consists of a grid
- * representing the walls and other elements in different colors.
+ * This function coordinates the drawing of the base, 
+ * surrounding grid, and middle grid.
  *
  * @param data The main data structure for the application.
  */
@@ -32,6 +32,13 @@ void	drawmap(t_cub3d *data)
 	draw_middle_grid(data);
 }
 
+/**
+ * @brief Draw the base of the map.
+ *
+ * This function fills the entire map area with a base color.
+ *
+ * @param data The main data structure for the application.
+ */
 void	draw_base(t_cub3d *data)
 {
 	int	i;
@@ -46,6 +53,15 @@ void	draw_base(t_cub3d *data)
 	}
 }
 
+/**
+ * @brief Draw the surrounding grid of the player's position.
+ *
+ * This function draws a grid around the player's position, with 
+ * different colors based on whether the grid cell is open (white), 
+ * a wall (dark gray), or other elements.
+ *
+ * @param data The main data structure for the application.
+ */
 void	draw_surrounding_grid(t_cub3d *data)
 {
 	int	i;
@@ -70,6 +86,14 @@ void	draw_surrounding_grid(t_cub3d *data)
 	}
 }
 
+/**
+ * @brief Draw the middle grid of the player's direction.
+ *
+ * This function draws a grid in the direction the player is facing,
+ * with a special color.
+ *
+ * @param data The main data structure for the application.
+ */
 void	draw_middle_grid(t_cub3d *data)
 {
 	int	i;

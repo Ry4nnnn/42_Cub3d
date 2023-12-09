@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 15:00:00 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 22:36:22 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/09 23:57:30 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,15 @@
 int	error_exit(t_cub3d *data);
 int	exit_hook(t_cub3d *data);
 
+/**
+ * @brief Free allocated memory and exit the program in case of an error.
+ *
+ * This function frees the allocated memory for textures, player, 
+ * ray, map, and the main data structure. It then exits the program with 
+ * an error status.
+ *
+ * @param data The main data structure for the application.
+ */
 int	error_exit(t_cub3d *data)
 {
 	free(data->texture->north);

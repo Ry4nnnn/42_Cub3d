@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:56:32 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 17:29:24 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/09 23:50:27 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,18 @@ int	init_fc_color(t_cub3d *data, char *str)
 	return (0);
 }
 
+/**
+ * @brief Initialize floor color based on the provided string.
+ *
+ * This function parses the provided string and initializes the floor color.
+ * It checks for valid color values and sets the floor color in the texture 
+ * structure.
+ *
+ * @param data The main data structure for the application.
+ * @param array The array obtained by splitting the input string.
+ * @param num The array obtained by splitting the numerical values.
+ * @return 0 on success, 1 on failure.
+ */
 int	init_floor(t_cub3d *data, char **array, char **num)
 {
 	int		i;
@@ -70,6 +82,18 @@ int	init_floor(t_cub3d *data, char **array, char **num)
 	return (0);
 }
 
+/**
+ * @brief Initialize ceiling color based on the provided string.
+ *
+ * This function parses the provided string and initializes the ceiling color.
+ * It checks for valid color values and sets the ceiling color in the 
+ * texture structure.
+ *
+ * @param data The main data structure for the application.
+ * @param array The array obtained by splitting the input string.
+ * @param num The array obtained by splitting the numerical values.
+ * @return 0 on success, 1 on failure.
+ */
 int	init_ceiling(t_cub3d *data, char **array, char **num)
 {
 	int		i;

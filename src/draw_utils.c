@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 14:22:15 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 19:03:20 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/09 23:42:09 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,16 @@ void	change_colour(t_cub3d *data, t_image *img);
 void	drawsquare(t_cub3d	*data, int x, int y, int colour);
 int		is_wall(t_cub3d *data, int x, int y);
 
+/**
+ * @brief Draw the upper half of the window with two different colors.
+ *
+ * This function divides the window into two halves and fills the upper half
+ * with the specified colors.
+ *
+ * @param data The main data structure for the application.
+ * @param colour1 The color for the top half.
+ * @param colour2 The color for the bottom half.
+ */
 void	half_window(t_cub3d *data, int colour1, int colour2)
 {
 	t_image	*img_info;
@@ -36,6 +46,15 @@ void	half_window(t_cub3d *data, int colour1, int colour2)
 	change_colour(data, img_info);
 }
 
+/**
+ * @brief Change the color of a specified region in the window.
+ *
+ * This function changes the color of a specified rectangular region 
+ * in the window.
+ *
+ * @param data The main data structure for the application.
+ * @param img The image information containing parameters for the region.
+ */
 void	change_colour(t_cub3d *data, t_image *img)
 {
 	int	i;
@@ -50,6 +69,16 @@ void	change_colour(t_cub3d *data, t_image *img)
 	}
 }
 
+/**
+ * @brief Draw a square with a specified color.
+ *
+ * This function draws a square in the window with a specified color.
+ *
+ * @param data The main data structure for the application.
+ * @param x The x-coordinate of the square.
+ * @param y The y-coordinate of the square.
+ * @param colour The color of the square.
+ */
 void	drawsquare(t_cub3d	*data, int x, int y, int colour)
 {
 	int	i;
@@ -74,8 +103,9 @@ void	drawsquare(t_cub3d	*data, int x, int y, int colour)
  * @param data The main data structure for the application.
  * @param x The x-coordinate of the position.
  * @param y The y-coordinate of the position.
- * @return 0 if the position is an open space, 1 if out of bounds, 
- * 2 if the position is a wall or other element, 3 for other cases.
+ * @return 0 if the position is wall, 2 if the position is either one of 
+ * he NEWS walls, 3 if the position is an empty space, 4 for spaces,
+ * 1 for other cases
  */
 int	is_wall(t_cub3d *data, int x, int y)
 {
