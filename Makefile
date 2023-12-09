@@ -59,7 +59,8 @@ LIBFT_PATH		:= libft
 
 MAIN		= main parsing mlx_utils map_check utils init key_hook \
 				draw draw_utils error_check exit init_floor_ceiling \
-				init_textures init_textures_utils init_player_data\
+				init_textures init_textures_utils init_player_data \
+				check_valid_map \
 
 #------------------------------------------------------#
 
