@@ -41,6 +41,7 @@ int	error_check(t_cub3d *data, int argc, char **argv)
 		return (1);
 	if (parsing(data, argv[1]) == 1)
 		return (1);
+	(void)argv;
 	return (0);
 }
 

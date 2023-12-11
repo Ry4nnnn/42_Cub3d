@@ -51,12 +51,22 @@ int	error_exit(t_cub3d *data)
  */
 int	exit_hook(t_cub3d *data)
 {
-	mlx_destroy_image(data->mlx, data->img->img);
-	mlx_destroy_window(data->mlx, data->win);
-	free(data->img);
+	mlx_destroy_image(data->mlx, data->texture->north->img_ptr);
+	mlx_destroy_image(data->mlx, data->texture->south->img_ptr);
+	mlx_destroy_image(data->mlx, data->texture->east->img_ptr);
+	mlx_destroy_image(data->mlx, data->texture->west->img_ptr);
+	mlx_destroy_image(data->mlx, data->texture->door->img_ptr);
+	free(data->texture->north);
+	free(data->texture->south);
+	free(data->texture->east);
+	free(data->texture->west);
+	free(data->texture->door);
+	free_2d(data->texture->map);
+	free(data->texture);
 	free(data->ray);
 	free(data->player);
-	free_2d(data->texture->map);
+	mlx_destroy_window(data->mlx, data->win);
+	mlx_destroy_image(data->mlx, data->img->img);
 	free(data);
 	exit(0);
 }
