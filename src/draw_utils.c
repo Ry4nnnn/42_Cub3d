@@ -44,6 +44,7 @@ void	half_window(t_cub3d *data, int colour1, int colour2)
 	img_info->dest_y = SIZE_Y;
 	img_info->colour = colour2;
 	change_colour(data, img_info);
+	free(img_info);
 }
 
 /**

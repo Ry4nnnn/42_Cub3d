@@ -17,7 +17,7 @@ ifeq ($(UNAME), Linux)
 	MLXFLAGS2	= -Lmlx_linux -lmlx_Linux -L/usr/lib -I/usr/include -Imlx_linux -lXext -lX11 -lm -lz
 endif
 ifeq ($(UNAME), Darwin)
-	MLXFLAGS2	= -lmlx -framework OpenGL -framework AppKit -Imlx
+	MLXFLAGS2	= -lmlx -framework OpenGL -framework AppKit -Imlx -fsanitize=leak -g3
 endif
 
 
