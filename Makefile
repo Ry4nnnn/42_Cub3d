@@ -14,7 +14,7 @@ CFLAGS		:= -fcommon -DNO_SHARED_MEMORY=1 -Wall -Wextra -Werror
 UNAME := $(shell uname)
 
 ifeq ($(UNAME), Linux)
-	MLXFLAGS2	= -Lmlx_linux -lmlx_Linux -L/usr/lib -I/usr/include -Imlx_linux -lXext -lX11 -lm -lz -fsanitize=address -g3
+	MLXFLAGS2	= -Lmlx_linux -lmlx_Linux -L/usr/lib -I/usr/include -Imlx_linux -lXext -lX11 -lm -lz
 endif
 ifeq ($(UNAME), Darwin)
 	MLXFLAGS2	= -lmlx -framework OpenGL -framework AppKit -Imlx

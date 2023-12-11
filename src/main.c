@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 14:43:27 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 19:34:21 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/10 00:06:49 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ int	main(int argc, char	**argv)
 	mlx_hook(data->win, 17, 1L << 17, exit_hook, data);
 	mlx_loop_hook(data->mlx, loop_hook, data);
 	mlx_loop(data->mlx);
+	
 	return (0);
 }
