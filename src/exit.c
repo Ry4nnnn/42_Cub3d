@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 15:00:00 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 23:57:30 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/11 21:15:50 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int	exit_hook(t_cub3d *data)
 	free(data->player);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_image(data->mlx, data->img->img);
+	free(data->img);
 	free(data);
+	system("leaks cub3d");
 	exit(0);
 }
