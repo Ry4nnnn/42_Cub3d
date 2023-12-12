@@ -43,7 +43,11 @@ void	draw_texture(t_cub3d *data, int x)
 		wall_index = wall.x * (data->current_texture->bpp / 8) \
 					+ wall.y * data->current_texture->line_length;
 		dest = data->current_texture->addr + wall_index;
-		my_mlx_pixel_put(data, SIZE_X - draw.x, draw.y, *(unsigned int *)dest);
+		// if (data->ray->north_south == NORTH || data->ray->north_south == EAST)
+		// 	my_mlx_pixel_put(data, draw.x, draw.y, *(unsigned int *)dest);
+		// else
+			my_mlx_pixel_put(data, SIZE_X - draw.x, draw.y, *(unsigned int *)dest);
+		(void)dest;
 	}
 }
 

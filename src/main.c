@@ -38,7 +38,7 @@ int	main(int argc, char	**argv)
 	data->win = mlx_new_window(data->mlx, SIZE_X, SIZE_Y, "cub3d");
 	data->img = ft_calloc(1, sizeof(t_img_data));
 	data->img->img = mlx_new_image(data->mlx, SIZE_X, SIZE_Y);
-	data->img->addr = mlx_get_data_addr(data->img->img, &data->img->bpp, \
+	data->img->addr = mlx_get_data_addr(data->img->img, &data->img->bpp, 
 						&data->img->line_length, &data->img->endian);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	mlx_loop_hook(data->mlx, loop_hook, data);

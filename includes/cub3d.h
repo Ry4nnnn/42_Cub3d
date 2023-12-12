@@ -27,7 +27,7 @@
 
 # define SIZE_X 900
 # define SIZE_Y 900
-# define M_PI 3.1415926535
+// # define M_PI 3.1415926535
 # define RED 0x00FF0000
 # define BLUE 0x004848F5
 # define GREEN 0x0043BF77
