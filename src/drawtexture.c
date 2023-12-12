@@ -43,10 +43,7 @@ void	draw_texture(t_cub3d *data, int x)
 		wall_index = wall.x * (data->current_texture->bpp / 8) \
 					+ wall.y * data->current_texture->line_length;
 		dest = data->current_texture->addr + wall_index;
-		// if (data->ray->north_south == NORTH || data->ray->north_south == EAST)
-		// 	my_mlx_pixel_put(data, draw.x, draw.y, *(unsigned int *)dest);
-		// else
-			my_mlx_pixel_put(data, SIZE_X - draw.x, draw.y, *(unsigned int *)dest);
+		my_mlx_pixel_put(data, SIZE_X - draw.x, draw.y, *(unsigned int *)dest);
 		(void)dest;
 	}
 }
@@ -73,9 +70,6 @@ static double	calculate_wall_hit(t_cub3d *data)
 		wall_hit = (data->player->px + \
 					data->ray->perpwalldist * (data->ray->raydirx));
 	}
-	if (data->ray->north_south == SOUTH || data->ray->north_south == WEST)
-		wall_hit = 1 - wall_hit;
-	else
-		wall_hit -= floor(wall_hit);
+	wall_hit -= floor(wall_hit);
 	return (wall_hit);
 }

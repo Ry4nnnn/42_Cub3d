@@ -39,7 +39,7 @@
 # endif
 
 # ifdef __linux__
-#  define ROT_ANGLE 2
+#  define ROT_ANGLE 5
 #  define MOVE_SPEED 0.1
 # endif
 
