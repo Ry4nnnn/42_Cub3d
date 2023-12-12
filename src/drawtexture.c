@@ -71,5 +71,7 @@ static double	calculate_wall_hit(t_cub3d *data)
 					data->ray->perpwalldist * (data->ray->raydirx));
 	}
 	wall_hit -= floor(wall_hit);
+	if (data->ray->east_west == WEST || data->ray->north_south == SOUTH)
+		wall_hit = 1 - wall_hit;
 	return (wall_hit);
 }
