@@ -50,6 +50,7 @@ Math on graphic projects heavily rely on vector and trigonometry. So, in order t
 
 ***Vector***
 Vector in Math consist of two components. Every line vector equations are position vector and scaling multiplication of direction vector.
+
 - position vector
     One of the points in the line. In math, it can be any point on the line. 
     In this project, we'll be using player's coordinates in the map as position vector.
