@@ -63,6 +63,7 @@ Vector in Math consist of two components. Every line vector equations are positi
     - If you still couldn't understand, recall the transformation you have learned in high school, it's basically the same thing.
 
 I'll not mention about trigo, you can refer youtube videos to figure it yourself.
+
 ---
 
 
