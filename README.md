@@ -25,7 +25,8 @@ You can try to run the program by:
 make test
 ```
 ---
-### Run the program 
+### Run the program
+The preset running test only run on 1 map. You can try other maps by:
 ```
 ./cub3d maps/valid.cub
 ```
