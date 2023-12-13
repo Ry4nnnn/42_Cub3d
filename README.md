@@ -13,6 +13,11 @@ This program can run on both Mac and Linux(WSL). However, if you're running it o
 ```
 sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
 ```
+
+then
+```
+export DISPLAY=localhost:0.0
+```
 ---
 ### Run the program 
 ```
