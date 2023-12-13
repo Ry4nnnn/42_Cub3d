@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:54:22 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 23:41:44 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/13 15:30:08 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,28 @@ int	check_valid_map(t_cub3d *data)
  */
 int	check_first_last_row(t_cub3d *data)
 {
-	if (ft_strchr(data->texture->map[0], '0') \
-		|| ft_strchr(data->texture->map[data->texture->height - 1], '0'))
+	int	i;
+	int	r;
+
+	i = -1;
+	while (data->texture->map[0][++i])
 	{
-		ft_putstr_fd("Error: Map first or last rows not closed\n", 2);
-		return (1);
+		r = is_wall(data, i, 0);
+		if (r != 0 && r != 4)
+		{
+			ft_putstr_fd("Error: Map first or last rows not closed\n", 2);
+			return (1);
+		}
+	}
+	i = -1;
+	while (data->texture->map[data->texture->height - 1][++i])
+	{
+		r = is_wall(data, i, data->texture->height - 1);
+		if (r != 0 && r != 4)
+		{
+			ft_putstr_fd("Error: Map first or last rows not closed\n", 2);
+			return (1);
+		}
 	}
 	return (0);
 }
