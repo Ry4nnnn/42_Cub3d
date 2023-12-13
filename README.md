@@ -19,6 +19,12 @@ then
 export DISPLAY=localhost:0.0
 ```
 ---
+### Preset running test
+You can try to run the program by:
+```
+make test
+```
+---
 ### Run the program 
 ```
 ./cub3d maps/valid.cub
