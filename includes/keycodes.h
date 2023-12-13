@@ -6,7 +6,7 @@
 /*   By: tzi-qi <tzi-qi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 22:59:19 by tzi-qi            #+#    #+#             */
-/*   Updated: 2023/12/09 23:03:23 by tzi-qi           ###   ########.fr       */
+/*   Updated: 2023/12/13 13:24:27 by tzi-qi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 # endif
 
 # ifdef __APPLE__
-#  define ROT_ANGLE 15
-#  define MOVE_SPEED 0.5
+#  define ROT_ANGLE 10
+#  define MOVE_SPEED 0.3
 # endif
 
 # ifdef __linux__
