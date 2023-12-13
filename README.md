@@ -153,6 +153,6 @@ sin(angle)  cos(angle)
 ```
 
 ---
-### Contributors
+## Contributors
 - [ziqiqiiii](https://github.com/ziqiqiiii)
 - [Ry4nnnn](https://github.com/Ry4nnnn)
