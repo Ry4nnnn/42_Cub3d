@@ -145,6 +145,14 @@ my_mlx_pixel_put(data, SIZE_X - draw.x, draw.y, *(unsigned int*)dest);
 ```
 
 ---
+### Rotation
+This project is actually working on a 2D perspective instead of 3d. That's why we used 2D matrix rotation instead of 3D.
+```
+cos(angle) -sin(angle)
+sin(angle)  cos(angle)
+```
+
+---
 ### Contributors
 - [ziqiqiiii](https://github.com/ziqiqiiii)
 - [Ry4nnnn](https://github.com/Ry4nnnn)
