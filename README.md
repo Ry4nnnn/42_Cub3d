@@ -56,8 +56,7 @@ Vector in Math consist of two components. Every line vector equations are positi
 2. direction vector
     The "direction" of a vector is the angle made by the vector with the horizontal axis, that is, the X-axis.
 3. Scalar multiplication
-    Another point on the map is the position vector plus the scalar multiplication of the direction vector.Let use our project as example to explain this. Initially, our player is standing at (2, 4) at facing north. In order to the player to move forward (or backward or sideward), the player need to minus n in y-axis. This n is depend on how much the player want to move toward north. If 10 steps, then 10 x (direction vector toward North), or if 2 steps per time, then it will be 2 x (direction vector toward North). The 2 and 10 here is the scalar multiplication of direction vector. 
-    If you still couldn't understand, recall the transformation you have learned in high school, it's basically the same thing.
+    Another point on the map is the position vector plus the scalar multiplication of the direction vector.Let use our project as example to explain this. Initially, our player is standing at (2, 4) at facing north. In order to the player to move forward (or backward or sideward), the player need to minus n in y-axis. This n is depend on how much the player want to move toward north. If 10 steps, then 10 x (direction vector toward North), or if 2 steps per time, then it will be 2 x (direction vector toward North). The 2 and 10 here is the scalar multiplication of direction vector. If you still couldn't understand, recall the transformation you have learned in high school, it's basically the same thing.
 
 ### DDA Algorithm
 
