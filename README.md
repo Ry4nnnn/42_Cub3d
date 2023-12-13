@@ -7,6 +7,13 @@ This readme will be divided into two parts. The first part is about simple intro
 Cub3D is a dynamic first-person view game that utilizes ray-casting techniques.This is a simple game project inspired by Wolfenstein 3D.
 
 ---
+### Prerequisite
+This program can run on both Mac and Linux(WSL). However, if you're running it on WSL, there're some prerequisites.
+
+```
+sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
+```
+---
 ### Run the program 
 ```
 ./cub3d maps/valid.cub
@@ -65,9 +72,8 @@ Vector in Math consist of two components. Every line vector equations are positi
 I'll not mention about trigo, you can refer youtube videos to figure it yourself.
 
 ---
-
-
 ### DDA Algorithm
+
 
 ---
 ### Fix Fisheye Effects
@@ -81,7 +87,6 @@ ray->perpwalldist *= cos(ray->raydirx - data->player->dirx);
 ### Print images on walls
 
 The function (draw_texture) is responsible for drawing the texture on the wall by iterating over each pixel on the wall and mapping it to a corresponding pixel in the texture image. The color of the texture pixel is then retrieved and used to draw the pixel on the screen, creating the visual effect of a textured wall. The calculate_wall_hit function determines where on the wall the ray intersects, and this information is crucial for mapping the texture onto the wall accurately.
-
 
 
 
