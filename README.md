@@ -41,7 +41,7 @@ The `NO` is followed by the image use in north walls. This same goes with `SO`(S
 `F` is followed by the RBG value for the **floor**. `C` is meant for **ceiling**.
 
 The map can only be composed of these 6 characters:
-| charachers   |                                             |
+| characters   |                                             |
 |:------------:|:--------------------------------------------|
 | `0`          | an empty space                              |
 | `1`          | a wall                                      |
