@@ -49,6 +49,7 @@ The map must be closed by walls.
 Math on graphic projects heavily rely on vector and trigonometry. So, in order to have a better understand of the logic behind each algorithms, having the solid foundation of vector and trigonometer is a must.
 
 ***Vector***
+
 Vector in Math consist of two components. Every line vector equations are position vector and scaling multiplication of direction vector.
 
 1. position vector
